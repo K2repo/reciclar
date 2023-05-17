@@ -1,0 +1,84 @@
+.bg-all {
+    background: #FFFDED;
+    }
+    .btn-cuenta{
+    box-shadow: 0px 4px 4px #34BD65, inset 0px 4px 4px #27A353;
+    background: #32AC5E;
+    }
+    .btn-h {
+    background: #0170B9;
+    box-shadow: 0px 4px 4px rgba(18, 102, 79, 0.4), inset 0px 4px 10px rgba(0, 138, 228, 0.6);
+    }
+    .bg-a {
+    background: linear-gradient(180deg, #0170B9 47.4%, #0054A2 100%);
+    }
+    .tp {
+    text-shadow: 0px 5px 15px rgba(14, 63, 96, 0.4);
+    }
+    .btn-p {
+    background: #32AC5E;
+    /* button_shadow */
+    box-shadow: 0px 4px 4px rgba(18, 102, 79, 0.4);
+    }
+    .btn-f-h{
+    background: #32AC5E;
+    /* button_green_shadow */
+    box-shadow: 0px 6px 8px rgba(18, 102, 79, 0.3), inset -2px -3px 10px #1EA34E, inset 2px 3px 6px rgba(102, 235, 80, 0.7);
+    }
+    .bg-form {
+    background: #A9CF46;
+    /* section_shadow */
+    box-shadow: 0px 15px 30px rgba(5, 117, 46, 0.3);
+    border-radius: 30px;
+    }
+    .btn-r-m {
+    background: #A9CF46;
+    border: 1px solid #C5EE59;
+    box-shadow: inset -3px -3px 10px #C1F33D, inset 3px 3px 10px #83B630;
+    }
+    .campo-r {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px #BAE93F, inset 0px 4px 6px rgba(59, 126, 154, 0.3);
+    }
+    .btn-s {
+    /* button_green_shadow */
+    box-shadow: 0px 6px 8px rgba(18, 102, 79, 0.3), inset -2px -3px 10px #1EA34E, inset 2px 3px 6px rgba(102, 235, 80, 0.7);
+    }
+    .btn-a {
+    background: #32AC5E;
+    box-shadow: 0px 4px 4px rgba(18, 102, 79, 0.4), inset 0px 4px 10px #35CE6C;
+    }
+    .btn-d {
+    background: #2FC1FF;
+    box-shadow: 0px 4px 4px #47C8FF, inset 0px 4px 10px rgba(0, 138, 228, 0.6);
+    }
+    body {
+      min-height: 0vw;
+      font-size: calc(0.45258620689655166vw + 0.6568965517241381em);
+    }
+    /* Max Font Size */
+    @media screen and (min-width:1920px) {
+     body { font-size: 1.2000000000000002em; }
+    }
+    /* Min Font Size */
+    @media screen and (max-width:991px) {
+     body { font-size: calc(0.20181634712411706vw + 0.75em); }
+    }
+    .container {
+      max-width: 100em;
+    }
+    .bg-sombra-perfiles {
+    background: #FFFDED;
+    /* section_shadow */
+    box-shadow: 0px 15px 30px rgba(5, 117, 46, 0.3);
+    border-radius: 25px;
+    }
+    .c-p-p {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px #FFFEF3, inset 0px 4px 6px rgba(59, 126, 154, 0.3);
+    }
+    .btn-nueva-r {
+    background: #32AC5E;
+    /* button_green_shadow */
+    box-shadow: 0px 6px 8px rgba(18, 102, 79, 0.3), inset -2px -3px 10px #1EA34E, inset 2px 3px 6px rgba(102, 235, 80, 0.7);
+    }
