@@ -20,6 +20,8 @@ class MaterialController extends Controller
         return Inertia::render('Material/Index', [
             'materiales' => Material::all()
         ]);
+        //return view ()->width('Materiales', $materiales)
+
     }
 
     /**

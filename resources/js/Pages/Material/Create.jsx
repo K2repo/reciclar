@@ -13,7 +13,7 @@ import '/resources/css/material-create.css';
 import { useForm } from '@inertiajs/react';
 import AuthenticatedLayoutK2D from '@/Layouts/AuthenticatedLayoutK2D';
 
-export default function Index({ auth }) {
+export default function Create({ auth }) {
 
     const { data, setData, post, processing, errors, reset } = useForm({
         nombre: '',
