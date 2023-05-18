@@ -53,39 +53,39 @@ export default function FooterK2(props) {
                 <div className="footer">
                     <div className="div-block-38">
                         <div className="div-block-34">
-                            <div className="div-block-36"><img src="/images/miniam_01b.webp" loading="lazy" alt className="image-12" /></div>
-                            <div className="div-block-37"><img src="/images/miniam_02b.webp" loading="lazy" alt className="image-12" /></div>
-                            <div><img src="/images/vigilado_ssp-300x127b.webp" loading="lazy" alt className="image-12" /></div>
+                            <div className="div-block-36"><img src="/images/miniam_01b.webp" loading="lazy" alt={""} className="image-12" /></div>
+                            <div className="div-block-37"><img src="/images/miniam_02b.webp" loading="lazy" alt={""} className="image-12" /></div>
+                            <div><img src="/images/vigilado_ssp-300x127b.webp" loading="lazy" alt={""} className="image-12" /></div>
                         </div>
                         <div className="div-block-39">
                             <div className="text-block-5">Copyright © 2022 Reciiclar ESP</div>
                         </div>
                     </div>
                     <div className="div-block-35">
-                        <div className="div-block-40"><img src="/images/Logo_Oficial_reciiclar_blanco.svg" loading="lazy" alt className="image-13" /></div>
+                        <div className="div-block-40"><img src="/images/Logo_Oficial_reciiclar_blanco.svg" loading="lazy" alt={""} className="image-13" /></div>
                         <div className="div-block-42">
-                            <div className="div-block-41"><img src="/images/youtube.webp" loading="lazy" alt className="image-14" /></div>
-                            <div className="div-block-41"><img src="/images/facebook.webp" loading="lazy" alt className="image-14" /></div>
-                            <div className="div-block-41"><img src="/images/instagram.webp" loading="lazy" alt className="image-14" /></div>
+                            <div className="div-block-41"><img src="/images/youtube.webp" loading="lazy" alt={""} className="image-14" /></div>
+                            <div className="div-block-41"><img src="/images/facebook.webp" loading="lazy" alt={""} className="image-14" /></div>
+                            <div className="div-block-41"><img src="/images/instagram.webp" loading="lazy" alt={""} className="image-14" /></div>
                         </div>
                         <div className="wrapper-social">
                             <a href="https://twitter.com/Tycreated" target="_blank" className="social-icon w-inline-block">
                                 <div className="button-text">TW</div>
-                                <div className="circle-link-hover" /><img src="/images/Group-12.svg" loading="lazy" alt className="image-87" />
+                                <div className="circle-link-hover" /><img src="/images/Group-12.svg" loading="lazy" alt={""} className="image-87" />
                             </a>
                             <a href="https://www.instagram.com/tycreated/" target="_blank" className="social-icon w-inline-block">
                                 <div className="button-text">IG</div>
-                                <div className="circle-link-hover" /><img src="/images/Vector_1.svg" loading="lazy" alt className="image-86" />
+                                <div className="circle-link-hover" /><img src="/images/Vector_1.svg" loading="lazy" alt={""} className="image-86" />
                             </a>
                             <a href="https://twitter.com/Tycreated" target="_blank" className="social-icon w-inline-block">
                                 <div className="button-text">FB</div>
-                                <div className="circle-link-hover" /><img src="/images/Group-13.svg" loading="lazy" alt className="image-88" />
+                                <div className="circle-link-hover" /><img src="/images/Group-13.svg" loading="lazy" alt={""} className="image-88" />
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="div-block-43"><img src="/images/Powered_by_K2.webp" loading="lazy" alt sizes="(max-width: 767px) 100vw, 80vw" srcSet="images/Powered_by_K2-p-500.png 500w, /images/Powered_by_K2-p-800.png 800w, /images/Powered_by_K2-p-1080.png 1080w, /images/Powered_by_K2-p-1600.png 1600w, /images/Powered_by_K2-p-2000.png 2000w, /images/Powered_by_K2.webp 2104w" className="image-15" /></div>
+            <div className="div-block-43"><img src="/images/Powered_by_K2.webp" loading="lazy" alt={""} sizes="(max-width: 767px) 100vw, 80vw" srcSet="images/Powered_by_K2-p-500.png 500w, /images/Powered_by_K2-p-800.png 800w, /images/Powered_by_K2-p-1080.png 1080w, /images/Powered_by_K2-p-1600.png 1600w, /images/Powered_by_K2-p-2000.png 2000w, /images/Powered_by_K2.webp 2104w" className="image-15" /></div>
         </div>
     );
 }

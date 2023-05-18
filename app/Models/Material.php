@@ -9,5 +9,5 @@ class Material extends Model
 {
     use HasFactory;
     protected $table = 'materiales';
-    public $timestamps = false;
+    //public $timestamps = false;
 }

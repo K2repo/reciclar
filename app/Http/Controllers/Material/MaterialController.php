@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Http\RedirectResponse;
 
 class MaterialController extends Controller
 {
@@ -47,10 +48,12 @@ class MaterialController extends Controller
             'unidad_medida' => 'required|string|max:255',
             'descripcion' => 'required|string|max:255',
         ]);
+
         $material = new Material;
         $material->nombre = $request->nombre;
         $material->unidad_medida = $request->unidad_medida;
         $material->descripcion = $request->descripcion;
+        $material->sw_estado = 1;
         $material->save();
         return redirect(route('materiales.index'));
     }
@@ -72,15 +75,34 @@ class MaterialController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        //dd($id);
+        return Inertia::render('Material/Edit',['material'=>Material::find($id)]);
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    //public function update(Request $request, string $id)
+    public function update(Request $request, Material $material): RedirectResponse
     {
         //
+        //$this->authorize('update', $material);
+
+        /*$validated = $request->validate([
+            //'message' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255',
+            'unidad_medida' => 'required|string|max:255',
+            'descripcion' => 'required|string|max:255',
+        ]);*/
+
+        //$material->update($request->id);
+        //$aux = Material::find($request->id);
+        dd($request);
+
+
+
+        return redirect(route('materiales.index'));
     }
 
     /**
