@@ -82,3 +82,23 @@
     /* button_green_shadow */
     box-shadow: 0px 6px 8px rgba(18, 102, 79, 0.3), inset -2px -3px 10px #1EA34E, inset 2px 3px 6px rgba(102, 235, 80, 0.7);
     }
+
+.thead-reciclar-green-1{
+  width: 100%!important;
+  background: #A9CF46FF;
+  border-radius: 3px;
+  box-shadow: 0px 0px 1px #5b88d4, 0px 0px 2px #b81c6a;
+  font-size: 18px;
+  line-height: 28px;
+  color: #FFFFFFFF;
+  font-family: Nunitosans, sans-serif;
+  font-size: 1.25em;
+  font-weight: 400;
+}
+
+.table-title{
+  color:     #1C7FBE;
+  /* #3593cfde */
+  font-family: Nunitosans, sans-serif;
+  font-size: 1.25em;
+}
