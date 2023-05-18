@@ -16,7 +16,7 @@ export default function Index({ auth,children }) {
                     <div className="div-block-575">
                         <div className="container-2">
                             <div className="mobile-nav">
-                                <a href="#" className="logo-link mobile w-inline-block"><img src="/images/logo-reciclar.svg" loading="lazy" alt className="logo" /></a>
+                                <a href="#" className="logo-link mobile w-inline-block"><img src="/images/logo-reciclar.svg" loading="lazy" className="logo" /></a>
                                 <div data-w-id="b3e5de0d-d105-a27c-6479-2c5e5a399315" className="hamburger">
                                     <div data-w-id="b3e5de0d-d105-a27c-6479-2c5e5a399316" className="hamburger-line top" />
                                     <div data-w-id="b3e5de0d-d105-a27c-6479-2c5e5a399317" className="hamburger-line middle" />

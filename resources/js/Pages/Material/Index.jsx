@@ -15,6 +15,7 @@ import AuthenticatedLayoutK2D from '@/Layouts/AuthenticatedLayoutK2D';
 
 export default function Index(props) {
     console.log(props)
+
     const { data, setData, post, processing, errors, reset } = useForm({
         nombre: '',
         estado: '',
@@ -32,6 +33,7 @@ export default function Index(props) {
 
     return (
         <AuthenticatedLayoutK2D>
+
             <div className="bg-sombra-materiales">
                 <h1 className="heading-47">Materiales</h1>
                 <div className="div-block-568">
@@ -42,7 +44,7 @@ export default function Index(props) {
                                 <option value="Estado">Estado</option>
                             </select></div>
                             <div className="div-block-571">
-                                <a href="#" className="div-block-570 w-inline-block"><img src="images/buscar.png" loading="lazy" alt /></a>
+                                <a href="#" className="div-block-570 w-inline-block"><img src="images/buscar.png" loading="lazy" alt={""} /></a>
                             </div>
                         </form>
                         <div className="w-form-done">
@@ -54,7 +56,7 @@ export default function Index(props) {
                     </div>
                     <div className="div-block-584">
                         <a href={route('materiales.create')}  className="btn-nueva-r w-inline-block">
-                            <div className="div-block-585"><img src="images/cruz.svg" loading="lazy" width={38} alt /></div>
+                            <div className="div-block-585"><img src="images/cruz.svg" loading="lazy" width={38} alt={""} /></div>
                             <div className="text-block-191">Nuevo material</div>
                         </a>
                     </div>
@@ -77,17 +79,17 @@ export default function Index(props) {
                     { props.materiales.map((material,index) => {
                         return  <tr className = {(index===0)?'thead-reciclar-green-1':''}>
                                     <th><input type={'checkbox'}></input></th>
-                                    <td>000000</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
+                                    <td>{material.id}</td>
+                                    <td>{material.nombre}</td>
+                                    <td>{material.nombre}</td>
+                                    <td>{material.nombre}</td>
+                                    <td>{material.sw_estado === 1 ? <span className="text-success"> Activo </span> : <span className="text-danger"> Inactivo </span>  }</td>
                                 </tr>;
-                        } )
+                        })
                     }
                 </tbody>
                 </table>
-                <a href="editar-material.html" className="w-inline-block"><img src="images/materiales.png" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 79vw, (max-width: 991px) 83vw, (max-width: 1439px) 72vw, 954px" srcSet="images/materiales-p-500.png 500w, images/materiales-p-800.png 800w, images/materiales.png 954w" alt className="image-116" /></a>
+                {/* <a href="editar-material.html" className="w-inline-block"><img src="images/materiales.png" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 79vw, (max-width: 991px) 83vw, (max-width: 1439px) 72vw, 954px" srcSet="images/materiales-p-500.png 500w, images/materiales-p-800.png 800w, images/materiales.png 954w" alt className="image-116" /></a> */}
             </div>
 
         </AuthenticatedLayoutK2D>
