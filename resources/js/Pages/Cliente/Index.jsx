@@ -6,9 +6,9 @@ import '/resources/css/clientes-index.css';
 import { useForm } from '@inertiajs/react';
 import AuthenticatedLayoutK2D from '@/Layouts/AuthenticatedLayoutK2D';
 
-export default function Index({ auth }) {
-
-    const { data, setData, post, processing, errors, reset } = useForm({
+export default function Index(props) {
+    console.log(props);
+    const { data, setData, post, processing, errors, reset} = useForm({
         nombre: '',
         estado: '',
         unidad_medida: '',
@@ -45,11 +45,40 @@ export default function Index({ auth }) {
                 </div>
             </div>
             <div className="div-block-584">
-                <a href="crear-rutas.html" className="btn-nueva-r w-inline-block">
+                <a href={route('clientes.create')} className="btn-nueva-r w-inline-block">
                 <div className="div-block-585"><img src="images/cruz.svg" loading="lazy" width={38} alt /></div>
                 <div className="text-block-191">Nuevo</div>
                 </a>
             </div>
+
+            <table className="table" style= {{ position:'relative', width:'100%', textAlign:'center', fontFamily: 'Nexa, sans-serif' }}>
+                    <thead className="thead table-title ">
+                        <tr>
+                            <th className='fw-100' scope="col"><input type={'checkbox'}></input> Todos</th>
+                            <th className='fw-100' scope="col">Nombre</th>
+                            <th className='fw-100' scope="col">N° documento</th>
+                            <th className='fw-100' scope="col">Estado</th>
+                            <th className='fw-100' scope="col">Perfil</th>
+                            <th className='fw-100' scope="col">Acciones</th>
+                        </tr>
+                    </thead><br />
+                    <tbody style={{ marginTop:'2rem' }}>
+                        { props.clientes.map((cliente,index) => {
+                            return  <tr className = {(index===0)?'thead-reciclar-green-1':''}>
+                                        <th><input type={'checkbox'} className='checkboxCliente' data-cliente={cliente.id}></input></th>
+                                        <td>{cliente.name}</td>
+                                        <td>{cliente.numero_documento}</td>
+                                        <td>{cliente.sw_estado ? 'Activo' : 'Inactivo'}</td>
+                                        <td>{cliente.es_cliente.cod_rol ? 'Cliente' : 'N/A'}</td>
+                                        <td>
+                                            <a href={route('clientes.edit',  cliente.id)}>Editar </a>  
+                                            <a type="button" href={route('clientes.destroy', cliente.id)} method="delete"> Eliminar</a>
+                                        </td>
+                                    </tr>;
+                            } )
+                        }
+                    </tbody>
+                </table>
             <a href="admin-perfil.html" className="link-block-2 w-inline-block"><img src="images/clientes.png" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 79vw, (max-width: 991px) 83vw, (max-width: 1279px) 72vw, (max-width: 1439px) 75vw, (max-width: 1919px) 81vw, 95vw" srcSet="images/clientes-p-500.png 500w, images/clientes-p-800.png 800w, images/clientes.png 937w" alt className="imagen-rutas" /></a>
             </div>
 

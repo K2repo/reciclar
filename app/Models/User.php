@@ -3,6 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\Sistema\Rol;
+use App\Models\Sistema\UsuarioRol;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -19,8 +22,15 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'tipo_documento',
+        'numero_documento',
         'email',
         'password',
+        'telefono',
+        'direccion_residencia',
+        'direccion_residencia_2',
+        'sw_estado',
+        'cod_ciudad',
     ];
 
     /**
@@ -41,4 +51,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function roles()
+    {
+        return $this->hasMany(UsuarioRol::class, 'cod_usuario', 'id');
+    }
+
+    public function rol()
+    {
+        return $this->hasOne(UsuarioRol::class, 'cod_usuario', 'id');
+    }
+
+    public function esCliente()
+    {
+        return $this->rol()->where('cod_rol', Rol::CLIENTE);
+    }
 }

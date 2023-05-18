@@ -45,6 +45,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('rutas', RutaController::class);
     Route::resource('vehiculos', VehiculoController::class);
     Route::resource('materiales', MaterialController::class);
+    Route::get('vehiculos/{id}/buscar-rutas', [VehiculoController::class, 'buscarRutas'])
+        ->name('vehiculos.buscarRutas');
 });
 
 Route::resource('chirps', ChirpController::class)

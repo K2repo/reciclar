@@ -5,8 +5,8 @@ import '/resources/css/vehiculos-index.css';
 import { useForm } from '@inertiajs/react';
 import AuthenticatedLayoutK2D from '@/Layouts/AuthenticatedLayoutK2D';
 
-export default function Index({ auth }) {
-
+export default function Index(props) {
+    console.log(props);
     const { data, setData, post, processing, errors, reset } = useForm({
         nombre: '',
         estado: '',
@@ -45,12 +45,38 @@ export default function Index({ auth }) {
                         </div>
                     </div>
                     <div className="div-block-584">
-                        <a href="crear-vehiculos.html" className="btn-nueva-r w-inline-block">
+                        <a href={route('vehiculos.create')} className="btn-nueva-r w-inline-block">
                             <div className="div-block-585"><img src="images/cruz.svg" loading="lazy" width={38} alt /></div>
                             <div className="text-block-191">Nuevo vehiculo</div>
                         </a>
                     </div>
                 </div>
+
+                <table className="table" style= {{ position:'relative', width:'100%', textAlign:'center', fontFamily: 'Nexa, sans-serif' }}>
+                    <thead className="thead table-title ">
+                        <tr>
+                            <th className='fw-100' scope="col"><input type={'checkbox'}></input> Todos</th>
+                            <th className='fw-100' scope="col">Placa</th>
+                            <th className='fw-100' scope="col">Marca</th>
+                            <th className='fw-100' scope="col">Modelo</th>
+                            <th className='fw-100' scope="col">Estado</th>
+                            <th className='fw-100' scope="col">Acciones</th>
+                        </tr>
+                    </thead><br />
+                    <tbody style={{ marginTop:'2rem' }}>
+                        { props.vehiculos.map((vehiculo,index) => {
+                            return  <tr className = {(index===0)?'thead-reciclar-green-1':''}>
+                                        <th><input type={'checkbox'} className='checkboxVehiculo' data-vehiculo={vehiculo.id}></input></th>
+                                        <td>{vehiculo.placa}</td>
+                                        <td>{vehiculo.marca}</td>
+                                        <td>{vehiculo.modelo}</td>
+                                        <td>{vehiculo.sw_estado ? 'Activo' : 'Inactivo'}</td>
+                                        <td><a href={route('vehiculos.edit', vehiculo.id)}>Editar</a></td>
+                                    </tr>;
+                            } )
+                        }
+                    </tbody>
+                </table>
                 <a href="editar-vehiculos.html" className="div-block-530 w-inline-block"><img src="images/admin-vehiculos.png" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 90vw, (max-width: 991px) 87vw, (max-width: 1279px) 72vw, (max-width: 1439px) 75vw, (max-width: 1919px) 81vw, 1300px" srcSet="images/admin-vehiculos-p-500.png 500w, images/admin-vehiculos-p-800.png 800w, images/admin-vehiculos.png 949w" alt className="image-110" /></a>
             </div>
         </AuthenticatedLayoutK2D>
