@@ -15,7 +15,6 @@ class ClienteRequest extends FormRequest
      */
     public function rules(): array
     {
-        $this->merge(['name' => $this->get('nombre').' '.$this->get('apellido')]);
         $reglas = [
             'email'  => ['required', 'string', 'max:255'],
             'nombre' => ['required', 'string', 'max:255'],
@@ -26,7 +25,7 @@ class ClienteRequest extends FormRequest
 
         if (!$this->has('id')) {
             array_push($reglas['email'], Rule::unique(User::class));
-            $this->merge(['password' => $this->get('numero_documento')]);
+            $this->merge(['password' => password_hash($this->get('numero_documento'), PASSWORD_DEFAULT)]);
         }
 
         return $reglas;

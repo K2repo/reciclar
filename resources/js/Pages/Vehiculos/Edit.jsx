@@ -27,6 +27,35 @@ export default function Edit(props) {
         put(route('vehiculos.update', props.vehiculo.id), { onSuccess: () => reset() });
     };
 
+    $(document).ready(function(){
+        $('.selectZona').trigger('change');
+     });
+
+    const cargarRutas = (id) => {
+        $.ajax({
+            type: 'GET',
+            url: route('vehiculos.buscarRutas', id),
+            success: function(response) {
+                console.log(response);
+                let rutas = response?.rutas ?? [];
+                let select = $(`.selectRuta`);
+                select.empty();
+                let opcion = new Option('Seleccione la ruta', '', true, true);
+                select.append(opcion);
+                rutas.forEach((ruta) => {
+                    let selected = false;
+                    let idRuta = select.attr('data-ruta');
+                    if (idRuta && ruta.id == idRuta) {
+                        selected = true;
+                    }
+                    opcion = new Option(ruta.text, ruta.id, selected, selected);
+                    select.append(opcion);
+                });
+                select.attr('disabled', false);
+            }
+        });
+    }
+
     return (
         <AuthenticatedLayoutK2D>
             <div className="bg-ruta-interior sizem">
@@ -191,9 +220,11 @@ export default function Edit(props) {
                                 <div className="div-block-551">
                                     <div className="div-block-552">
                                         <label htmlFor="name-5" className="field-label-13">Ruta Asignada:</label>
-                                        <input type="text" className="campo-rutas w-input" maxLength={256} name="name-3" 
-                                            data-name="Name 3" id="name-3" defaultValue={props.vehiculo?.ruta ?? ''}
-                                            onChange={(e) => setData('ruta', e.target.value)}/>
+                                        <select name="field" data-name="Field" className="select-field-2 c-p-p w-select selectRuta"
+                                            onChange={(e) => setData('cod_ruta', e.target.value)} disabled={props.vehiculo?.programacion?.cod_ruta ? false : true} required
+                                            data-ruta={props.vehiculo?.programacion?.cod_ruta ?? ''}>
+                                                <option value="">Seleccione la ruta</option>
+                                        </select>
                                     </div>
                                     <div className="div-block-552 hide space">
                                         <label htmlFor="name-5" className="field-label-13 hide">Ejemplo Campo:</label>

@@ -19,6 +19,7 @@ export default function Create(props) {
         direccion_residencia: '',
         direccion_residencia_2: '',
         cod_ciudad: '',
+        cod_rol: '',
     });
 
     const submit = (e) => {
@@ -27,7 +28,7 @@ export default function Create(props) {
     };
 
     $(document).ready(function() {
-        $('#selectRol').select2();
+        // $('#selectRol').select2();
     });
 
     return (
@@ -58,8 +59,9 @@ export default function Create(props) {
                                 <div className="div-block-551">
                                     <div className="div-block-552">
                                         <label htmlFor="name-2" className="field-label-13 space">Tipo Identificación:</label>
-                                        <select id="field-3" name="field-3"
+                                        <select id="field-3" name="field-3" required
                                             data-name="Field 3" className="select-c campo-rutas w-select" onChange={(e) => setData('tipo_documento', e.target.value)}>
+                                            <option value="">Seleccione el tipo de Identificación</option>
                                             <option value="CC">Cedula de ciudadania</option>
                                             <option value="TI">Tarjeta de Identificación</option>
                                             <option value="PS">Pasaporte</option>
@@ -78,8 +80,9 @@ export default function Create(props) {
                                 <div className="div-block-551">
                                     <div className="div-block-552">
                                         <label htmlFor="field-3" className="field-label-13 t-s-c t">Rol:</label>
-                                        <select id="selectRol" name="field-3"
-                                            data-name="Field 3" className="select-c campo-rutas w-select">
+                                        <select id="selectRol" name="field-3" onChange={(e) => setData('cod_rol', e.target.value)}
+                                            data-name="Field 3" className="select-c campo-rutas w-select" required>
+                                                <option value="">Seleccione el rol</option>
                                                 { props.roles.map((rol,index) => {
                                                     return  <option value={rol.id}>{rol.nombre}</option>;
                                                     } )
@@ -88,7 +91,7 @@ export default function Create(props) {
                                     </div>
                                     <div className="div-block-552">
                                         <label htmlFor="name-2" className="field-label-13 hide space">Código de Usuario:</label>
-                                        <input type="text" className="campo-rutas w-input" maxLength={256} name="name-2"
+                                        <input type="text" className="campo-rutas w-input hide" maxLength={256} name="name-2"
                                             data-name="Name 2" placeholder="Código*" id="name-2"
                                             onChange={(e) => setData('', e.target.value)}/>
                                     </div>
@@ -99,7 +102,7 @@ export default function Create(props) {
                                     <div className="div-block-552">
                                         <label htmlFor="name-5" className="field-label-13 labelsize d n-r">Teléfono:</label>
                                         <input type="text" className="campo-rutas w-input" maxLength={256} name="name-2"
-                                            data-name="Name 2" placeholder="000 0000000" id="name-2"
+                                            data-name="Name 2" placeholder="000 0000000" id="name-2" required
                                             onChange={(e) => setData('telefono', e.target.value)}/>
                                     </div>
                                     <div className="div-block-552">
@@ -119,7 +122,7 @@ export default function Create(props) {
                                     </div>
                                     <div className="div-block-552">
                                         <label htmlFor="name-2" className="field-label-13 hide space">Contraseña:</label>
-                                        <input type="text" className="campo-rutas w-input" maxLength={256} name="name-2"
+                                        <input type="text" className="campo-rutas w-input hide" maxLength={256} name="name-2"
                                             data-name="Name 2" placeholder="***********" id="name-2"
                                             onChange={(e) => setData('', e.target.value)}/>
                                     </div>
@@ -142,7 +145,7 @@ export default function Create(props) {
                                     <div className="div-block-552">
                                         <label htmlFor="name-5" className="field-label-13 labelsize d n-r">Dirección:</label>
                                             <input type="text" className="campo-rutas w-input" maxLength={256} name="name-2"
-                                                data-name="Name 2" placeholder="Dirección*" id="name-2"
+                                                data-name="Name 2" placeholder="Dirección*" id="name-2" required
                                                 onChange={(e) => setData('direccion_residencia', e.target.value)}/>
                                     </div>
                                     <div className="div-block-552">
@@ -154,40 +157,7 @@ export default function Create(props) {
                                 </div>
                                 <div className="div-block-551">
                                     <div className="div-block-552">
-                                        <label htmlFor="name-3" className="field-label-13 t-s-c s">Dirección 3:</label>
-                                        <input type="text" className="campo-rutas w-input" maxLength={256} name="name-3"
-                                            data-name="Name 3" placeholder="Dirección*" id="name-3"
-                                            onChange={(e) => setData('', e.target.value)}/>
-                                    </div>
-                                    <div className="div-block-552">
-                                        <input type="text" className="campo-rutas hide w-input" maxLength={256} name="name-2"
-                                            data-name="Name 2" placeholder="Precio*" id="name-2"
-                                            onChange={(e) => setData('', e.target.value)}/>
-                                    </div>
-                                </div>
-                                <div className="div-block-551">
-                                    <div className="div-block-552">
                                         <label htmlFor="name-5" className="field-label-13 hide">Ejemplo Campo:</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="div-block-554 remove">
-                                <div className="div-block-551">
-                                    <div className="div-block-552">
-                                        <label htmlFor="name-5" className="field-label-13 labelsize d n-r">Ejemplo Campo:</label>
-                                        <div className="div-block-574">
-                                            <input type="text" className="campo-rutas w-input" maxLength={256} name="name-2"
-                                                data-name="Name 2" placeholder="Campo *" id="name-2"
-                                                onChange={(e) => setData('', e.target.value)}/>
-                                        </div>
-                                    </div>
-                                    <div className="div-block-552">
-                                        <label htmlFor="name-2" className="field-label-13 t-s-c">
-                                            <strong>Ejemplo Campo:</strong>
-                                        </label>
-                                        <input type="text" className="campo-rutas w-input" maxLength={256} name="name-2"
-                                            data-name="Name 2" placeholder="Campo *" id="name-2"
-                                            onChange={(e) => setData('', e.target.value)}/>
                                     </div>
                                 </div>
                             </div>

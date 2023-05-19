@@ -21,7 +21,6 @@ class ClienteController extends Controller
     {
         return Inertia::render('Cliente/Index', [
             'clientes' => User::with('esCliente')->whereHas('esCliente')->get(),
-            'roles' => Rol::where('sw_estado', Rol::ACTIVO)->get(),
         ]);
     }
 
@@ -30,7 +29,9 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Cliente/Create', []);
+        return Inertia::render('Cliente/Create', [
+            'roles' => Rol::where('sw_estado', Rol::ACTIVO)->get(),
+        ]);
     }
 
     /**
@@ -41,9 +42,13 @@ class ClienteController extends Controller
         $datos = $request->all();
         $cliente = User::create($datos);
 
-        $datos['cod_rol'] = Rol::CLIENTE;
-        $datos['cod_usuario'] = $cliente->id;
-        UsuarioRol::create($datos);
+        $roles = $request->input('cod_rol') ? [Rol::CLIENTE, $request->input('cod_rol')] : [Rol::CLIENTE];
+        foreach ($roles as $rol) {
+            UsuarioRol::updateOrCreate([
+                'cod_rol' => $rol,
+                'cod_usuario' => $cliente->id
+            ],[ $datos ]);
+        }
 
         return redirect(route('clientes.index'));
     }
@@ -62,7 +67,7 @@ class ClienteController extends Controller
     public function edit(string $id)
     {
         return Inertia::render('Cliente/Edit', [
-            'cliente' => User::find($id),
+            'cliente' => User::with('rol')->find($id),
             'roles' => Rol::where('sw_estado', Rol::ACTIVO)->get(),
         ]);
     }
@@ -76,6 +81,14 @@ class ClienteController extends Controller
         $cliente = User::find($id);
         $cliente->update($datos);
 
+        $roles = $request->input('cod_rol') ? [Rol::CLIENTE, $request->input('cod_rol')] : [Rol::CLIENTE];
+        foreach ($roles as $rol) {
+            UsuarioRol::updateOrCreate([
+                'cod_rol' => $rol,
+                'cod_usuario' => $cliente->id
+            ],[ $datos ]);
+        }
+
         return redirect(route('clientes.index'));
     }
 
@@ -84,6 +97,6 @@ class ClienteController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        dd($id);
     }
 }
