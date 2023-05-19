@@ -3,6 +3,7 @@ import '/resources/css/reciclar.webflow.css';
 import '/resources/css/webflow.css';
 import '/resources/css/admin-perfil.css';
 import '/resources/css/clientes-index.css';
+import Dropdown from '@/Components/Dropdown';
 import { useForm } from '@inertiajs/react';
 import AuthenticatedLayoutK2D from '@/Layouts/AuthenticatedLayoutK2D';
 
@@ -71,15 +72,28 @@ export default function Index(props) {
                                         <td>{cliente.sw_estado ? <span className="text-success"> Activo </span> : <span className="text-danger"> Inactivo </span>}</td>
                                         <td>{cliente.es_cliente.cod_rol ? 'Cliente' : 'N/A'}</td>
                                         <td>
-                                            <a href={route('clientes.edit',  cliente.id)}>Editar </a>  
-                                            <a type="button" href={route('clientes.destroy', cliente.id)} method="delete"> Eliminar</a>
+                                            <Dropdown>
+                                                <Dropdown.Trigger>
+                                                    <button>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                                        </svg>
+                                                    </button>
+                                                </Dropdown.Trigger>
+                                                <Dropdown.Content>
+                                                    <a className='text-dark' href={route('clientes.edit',  cliente.id)}>Editar </a>
+                                                    <Dropdown.Link as="button" href={route('clientes.destroy', cliente.id)} method="delete">
+                                                        Eliminar
+                                                    </Dropdown.Link>
+                                                </Dropdown.Content>
+                                            </Dropdown>
                                         </td>
                                     </tr>;
                             } )
                         }
                     </tbody>
                 </table>
-            <a href="admin-perfil.html" className="link-block-2 w-inline-block"><img src="images/clientes.png" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 79vw, (max-width: 991px) 83vw, (max-width: 1279px) 72vw, (max-width: 1439px) 75vw, (max-width: 1919px) 81vw, 95vw" srcSet="images/clientes-p-500.png 500w, images/clientes-p-800.png 800w, images/clientes.png 937w" alt className="imagen-rutas" /></a>
+            {/* <a href="admin-perfil.html" className="link-block-2 w-inline-block"><img src="images/clientes.png" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 79vw, (max-width: 991px) 83vw, (max-width: 1279px) 72vw, (max-width: 1439px) 75vw, (max-width: 1919px) 81vw, 95vw" srcSet="images/clientes-p-500.png 500w, images/clientes-p-800.png 800w, images/clientes.png 937w" alt className="imagen-rutas" /></a> */}
             </div>
 
         </AuthenticatedLayoutK2D>

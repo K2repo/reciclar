@@ -8,6 +8,7 @@ use App\Models\Cliente;
 use App\Models\Sistema\Rol;
 use App\Models\Sistema\UsuarioRol;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -95,8 +96,11 @@ class ClienteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
-        dd($id);
+        $cliente = User::find($id);
+        $cliente->delete();
+
+        return redirect(route('clientes.index'));
     }
 }

@@ -102,3 +102,15 @@
   font-family: Nunitosans, sans-serif;
   font-size: 1.25em;
 }
+
+.text-success{
+  color:#32AC5E;
+}
+
+.text-danger{
+  color:#F14336;
+}
+
+.text-dark{
+  color:#000000;
+}

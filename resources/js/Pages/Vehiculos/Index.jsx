@@ -2,6 +2,7 @@ import '/resources/css/normalize.css';
 import '/resources/css/reciclar.webflow.css';
 import '/resources/css/webflow.css';
 import '/resources/css/vehiculos-index.css';
+import Dropdown from '@/Components/Dropdown';
 import { useForm } from '@inertiajs/react';
 import AuthenticatedLayoutK2D from '@/Layouts/AuthenticatedLayoutK2D';
 
@@ -70,14 +71,30 @@ export default function Index(props) {
                                         <td>{vehiculo.placa}</td>
                                         <td>{vehiculo.marca}</td>
                                         <td>{vehiculo.modelo}</td>
-                                        <td>{vehiculo.sw_estado ? 'Activo' : 'Inactivo'}</td>
-                                        <td><a href={route('vehiculos.edit', vehiculo.id)}>Editar</a></td>
+                                        <td>{vehiculo.sw_estado ? <span className="text-success"> Activo </span> : <span className="text-danger"> Inactivo </span>}</td>
+                                        <td>
+                                            <Dropdown>
+                                                <Dropdown.Trigger>
+                                                    <button>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                                        </svg>
+                                                    </button>
+                                                </Dropdown.Trigger>
+                                                <Dropdown.Content>
+                                                    <a className='text-dark' href={route('vehiculos.edit', vehiculo.id)}>Editar </a>
+                                                    <Dropdown.Link as="button" href={route('vehiculos.destroy', vehiculo.id)} method="delete">
+                                                        Eliminar
+                                                    </Dropdown.Link>
+                                                </Dropdown.Content>
+                                            </Dropdown>
+                                        </td>
                                     </tr>;
                             } )
                         }
                     </tbody>
                 </table>
-                <a href="editar-vehiculos.html" className="div-block-530 w-inline-block"><img src="images/admin-vehiculos.png" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 90vw, (max-width: 991px) 87vw, (max-width: 1279px) 72vw, (max-width: 1439px) 75vw, (max-width: 1919px) 81vw, 1300px" srcSet="images/admin-vehiculos-p-500.png 500w, images/admin-vehiculos-p-800.png 800w, images/admin-vehiculos.png 949w" alt className="image-110" /></a>
+                {/* <a href="editar-vehiculos.html" className="div-block-530 w-inline-block"><img src="images/admin-vehiculos.png" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 90vw, (max-width: 991px) 87vw, (max-width: 1279px) 72vw, (max-width: 1439px) 75vw, (max-width: 1919px) 81vw, 1300px" srcSet="images/admin-vehiculos-p-500.png 500w, images/admin-vehiculos-p-800.png 800w, images/admin-vehiculos.png 949w" alt className="image-110" /></a> */}
             </div>
         </AuthenticatedLayoutK2D>
     );
