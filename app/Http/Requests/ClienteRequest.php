@@ -17,8 +17,8 @@ class ClienteRequest extends FormRequest
     {
         $reglas = [
             'email'  => ['required', 'string', 'max:255'],
-            'nombre' => ['required', 'string', 'max:255'],
-            'apellido'  => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
+            'last_name'  => ['required', 'string', 'max:255'],
             'tipo_documento'  => ['required', 'string'],
             'numero_documento'  => ['required', 'string'],
         ];
