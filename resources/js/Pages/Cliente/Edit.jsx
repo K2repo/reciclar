@@ -10,8 +10,8 @@ import AuthenticatedLayoutK2D from '@/Layouts/AuthenticatedLayoutK2D';
 export default function Edit(props) {
     const { data, setData, put, processing, errors, reset } = useForm({
         id: props.cliente.id,
-        nombre: props.cliente?.nombre ?? '',
-        apellido: props.cliente?.apellido ?? '',
+        name: props.cliente?.name ?? '',
+        last_name: props.cliente?.last_name ?? '',
         tipo_documento: props.cliente?.tipo_documento ?? '',
         numero_documento: props.cliente?.numero_documento ?? '',
         email : props.cliente?.email ?? '',
@@ -46,14 +46,14 @@ export default function Edit(props) {
                                     <div className="div-block-552">
                                         <label htmlFor="name-4" className="field-label-13 labelsize d n-r l">Nombres:</label>
                                             <input type="text" className="campo-rutas w-input" maxLength={256} name="name-2"
-                                                data-name="Name 2" placeholder="Nombre*" id="name-2" required defaultValue={props.cliente?.nombre ?? ''}
-                                                onChange={(e) => setData('nombre', e.target.value)}/>
+                                                data-name="Name 2" placeholder="Nombre*" id="name-2" required defaultValue={props.cliente?.name ?? ''}
+                                                onChange={(e) => setData('name', e.target.value)}/>
                                     </div>
                                     <div className="div-block-552">
                                         <label htmlFor="field-4" className="field-label-13 t-s-c t">Apellidos:</label>
                                         <input type="text" className="campo-rutas w-input" maxLength={256} name="field"
-                                            data-name="" placeholder="Apellido*" id="field-4" required defaultValue={props.cliente?.apellido ?? ''}
-                                            onChange={(e) => setData('apellido', e.target.value)}/>
+                                            data-name="" placeholder="Apellido*" id="field-4" required defaultValue={props.cliente?.last_name ?? ''}
+                                            onChange={(e) => setData('last_name', e.target.value)}/>
                                     </div>
                                 </div>
                                 <div className="div-block-551">

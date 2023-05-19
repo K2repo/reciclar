@@ -9,8 +9,8 @@ import AuthenticatedLayoutK2D from '@/Layouts/AuthenticatedLayoutK2D';
 
 export default function Create(props) {
     const { data, setData, post, processing, errors, reset } = useForm({
-        nombre: '',
-        apellido: '',
+        name: '',
+        last_name: '',
         tipo_documento: 'CC',
         numero_documento: '',
         email : '',
@@ -47,13 +47,13 @@ export default function Create(props) {
                                         <label htmlFor="name-4" className="field-label-13 labelsize d n-r l">Nombres:</label>
                                             <input type="text" className="campo-rutas w-input" maxLength={256} name="name-2"
                                                 data-name="Name 2" placeholder="Nombre*" id="name-2" required
-                                                onChange={(e) => setData('nombre', e.target.value)}/>
+                                                onChange={(e) => setData('name', e.target.value)}/>
                                     </div>
                                     <div className="div-block-552">
                                         <label htmlFor="field-4" className="field-label-13 t-s-c t">Apellidos:</label>
                                         <input type="text" className="campo-rutas w-input" maxLength={256} name="field"
                                             data-name="" placeholder="Apellido*" id="field-4" required
-                                            onChange={(e) => setData('apellido', e.target.value)}/>
+                                            onChange={(e) => setData('last_name', e.target.value)}/>
                                     </div>
                                 </div>
                                 <div className="div-block-551">

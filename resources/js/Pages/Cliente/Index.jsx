@@ -66,7 +66,7 @@ export default function Index(props) {
                         { props.clientes.map((cliente,index) => {
                             return  <tr className = {(index===0)?'thead-reciclar-green-1':''}>
                                         <th><input type={'checkbox'} className='checkboxCliente' data-cliente={cliente.id}></input></th>
-                                        <td>{cliente.nombre+" "+cliente.apellido}</td>
+                                        <td>{cliente.name+" "+cliente.last_name}</td>
                                         <td>{cliente.numero_documento}</td>
                                         <td>{cliente.sw_estado ? <span className="text-success"> Activo </span> : <span className="text-danger"> Inactivo </span>}</td>
                                         <td>{cliente.es_cliente.cod_rol ? 'Cliente' : 'N/A'}</td>
