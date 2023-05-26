@@ -71,6 +71,11 @@ class User extends Authenticatable
         return $this->rol()->where('cod_rol', Rol::CLIENTE);
     }
 
+    public function ciudad()
+    {
+        return $this->belongsTo(Ciudad::class, 'cod_ciudad', 'id');
+    }
+
     public function delete(): bool
     {
         return $this->update(['sw_estado' => self::INACTIVO]);

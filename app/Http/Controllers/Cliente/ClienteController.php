@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Cliente;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClienteRequest;
-use App\Models\Cliente;
+use App\Models\Ciudad;
+use App\Models\Departamento;
 use App\Models\Sistema\Rol;
 use App\Models\Sistema\UsuarioRol;
 use App\Models\User;
@@ -32,6 +33,7 @@ class ClienteController extends Controller
     {
         return Inertia::render('Cliente/Create', [
             'roles' => Rol::where('sw_estado', Rol::ACTIVO)->get(),
+            'departamentos' => Departamento::where('sw_estado', Departamento::ACTIVO)->get(),
         ]);
     }
 
@@ -67,9 +69,16 @@ class ClienteController extends Controller
      */
     public function edit(string $id)
     {
+        $cliente = User::with('rol', 'ciudad')->find($id);
+        $cod_departamento = $cliente?->ciudad?->cod_departamento;
         return Inertia::render('Cliente/Edit', [
-            'cliente' => User::with('rol')->find($id),
+            'cliente' => $cliente,
             'roles' => Rol::where('sw_estado', Rol::ACTIVO)->get(),
+            'departamentos' => Departamento::where('sw_estado', Departamento::ACTIVO)->get(),
+            'ciudades' => Ciudad::where([
+                'sw_estado' => Ciudad::ACTIVO,
+                'cod_departamento' => $cod_departamento,
+            ])->get(),
         ]);
     }
 
@@ -102,5 +111,12 @@ class ClienteController extends Controller
         $cliente->delete();
 
         return redirect(route('clientes.index'));
+    }
+       
+    public function buscarCiudades(Request $request, $id)
+    {
+        $ciudades = Ciudad::select("id", "nombre as text")->where('cod_departamento', $id)->get();
+        
+        return response()->json(["ciudades" => $ciudades]);
     }
 }

@@ -92,7 +92,17 @@
   line-height: 28px;
   color: #FFFFFFFF;
   font-family: Nunitosans, sans-serif;
-  font-size: 1.25em;
+  font-weight: 400;
+}
+
+.thead-reciclar-orange-1{
+  width: 100%!important;
+  background: #fff3ce;
+  border-radius: 3px;
+  font-size: 18px;
+  line-height: 28px;
+  color: rgb(0, 0, 0);
+  font-family: Nunitosans, sans-serif;
   font-weight: 400;
 }
 
@@ -113,4 +123,12 @@
 
 .text-dark{
   color:#000000;
+}
+
+.block.transition {
+  position: relative;
+  height: 5vh;
+  text-align: center;
+  color: black;
+  font-size: 100%;
 }

@@ -41,8 +41,10 @@ Route::get('/perfilAdmin', function () {
 
 Route::middleware('auth')->group(function () {
     //Route::resource('perfiles', MaterialController::class);
+    Route::get('clientes/{id}/buscar-ciudades', [ClienteController::class, 'buscarCiudades'])
+        ->name('clientes.buscarCiudades');
     Route::resource('clientes', ClienteController::class)
-        ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+        ->only(['index', 'create', 'store', 'edit', 'update', 'destroy', 'buscarCiudades']);
     Route::resource('rutas', RutaController::class);
     Route::get('vehiculos/{id}/buscar-rutas', [VehiculoController::class, 'buscarRutas'])
         ->name('vehiculos.buscarRutas');
