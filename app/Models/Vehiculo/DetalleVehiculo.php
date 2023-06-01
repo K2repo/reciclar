@@ -2,12 +2,11 @@
 
 namespace App\Models\Vehiculo;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Classes\Models\Model;
 
 class DetalleVehiculo extends Model
 {
     protected $table = 'detalle_vehiculo';
-    public $timestamps = false;
 
     /** Campos que pueden ser usados en create/update. */
     protected $fillable = [

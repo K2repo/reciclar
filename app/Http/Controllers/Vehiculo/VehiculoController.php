@@ -74,6 +74,10 @@ class VehiculoController extends Controller
         return Inertia::render('Vehiculos/Edit', [
             'vehiculo' => $vehiculo,
             'zonas' => Zona::where('sw_estado', Zona::ACTIVO)->get(),
+            'rutas' => Ruta::where([
+                'sw_estado' => Ruta::ACTIVO,
+                'cod_zona' => $cod_zona
+            ])->get(),
             'conductores' => User::all(),
             'cod_zona' => $cod_zona,
         ]);
@@ -92,6 +96,10 @@ class VehiculoController extends Controller
             'cod_vehiculo' => $vehiculo->id
         ], $datos);
 
+        $programar = ProgramacionRuta::updateOrCreate([
+            'cod_vehiculo' => $vehiculo->id,
+        ], $datos);
+
         return redirect(route('vehiculos.index'));
     }
 
@@ -100,7 +108,10 @@ class VehiculoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $vehiculo = Vehiculo::find($id);
+        $vehiculo->delete();
+
+        return redirect(route('vehiculos.index'));
     }
    
     public function buscarRutas(Request $request, $id)

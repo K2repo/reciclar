@@ -2,15 +2,11 @@
 
 namespace App\Models\Vehiculo;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Classes\Models\Model;
 
 class Vehiculo extends Model
 {
-    const ACTIVO   = 1;
-    const INACTIVO = 0;
-
     protected $table = 'vehiculos';
-    public $timestamps = false;
 
     /** Campos que pueden ser usados en create/update. */
     protected $fillable = [

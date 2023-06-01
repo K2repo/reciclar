@@ -20,6 +20,7 @@ export default function Edit(props) {
         cod_usuario: props.vehiculo?.programacion?.cod_usuario ?? '',
         sector: props.vehiculo?.sector ?? '',
         cod_ruta: props.vehiculo?.programacion?.cod_ruta ?? '',
+        id_programa: props.vehiculo?.programacion?.id ?? '',
     });
 
     const submit = (e) => {
@@ -27,11 +28,43 @@ export default function Edit(props) {
         put(route('vehiculos.update', props.vehiculo.id), { onSuccess: () => reset() });
     };
 
+    const cargarRutas = (id) => {
+        $.ajax({
+            type: 'GET',
+            url: route('vehiculos.buscarRutas', id),
+            success: function(response) {
+                let rutas = response?.rutas ?? [];
+                let select = $(`.selectRuta`);
+                select.empty();
+                let opcion = new Option('Seleccione la ruta', '', true, true);
+                select.append(opcion);
+                rutas.forEach((ruta) => {
+                    let selected = false;
+                    let idRuta = select.attr('data-ruta');
+                    if (idRuta && ruta.id == idRuta) {
+                        selected = true;
+                    }
+                    opcion = new Option(ruta.text, ruta.id, selected, selected);
+                    select.append(opcion);
+                });
+                select.attr('disabled', false);
+            }
+        });
+    }
+
     return (
         <AuthenticatedLayoutK2D>
             <div className="bg-ruta-interior sizem">
                 <h1 className="heading-47">Editar Vehículo</h1>
                 <div>
+                <div className={Object.keys(props.errors).length === 0 ? 'w-form-fail' : 'messages-error'}>
+                        <div className='messages-title'>¡Ups! Algo salió mal al enviar el formulario.</div>
+                        <ul className='messages-contect'>
+                            {Object.values(props.errors).map(error=>{
+                                return  <li className='error'>{error}</li>;
+                            })}
+                        </ul>
+                    </div><br />
                     <div className="w-form">
                         <form onSubmit={submit}>
                             <div>
@@ -39,14 +72,14 @@ export default function Edit(props) {
                                     <div className="div-block-552">
                                         <label htmlFor="placa" className="field-label-13">Placa*:</label>
                                         <input type="text" className="campo-rutas w-input" maxLength={256} name="placa" data-name="placa" 
-                                         data-toggle="datepicker" id="placa" defaultValue={props.vehiculo?.placa ?? ''}
-                                            onChange={(e) => setData('placa', e.target.value)} required/>
+                                         data-toggle="datepicker" id="placa" defaultValue={props.vehiculo?.placa ?? ''} placeholder='Ingrese la placa'
+                                            onChange={(e) => setData('placa', e.target.value)}/>
                                     </div>
                                     <div className="div-block-552 hidespace">
                                         <label htmlFor="linea" className="field-label-13">Línea:</label>
                                         <input type="text" className="campo-rutas w-input" maxLength={256} name="linea" 
                                             data-name="linea" id="linea" defaultValue={props.vehiculo?.detalle?.linea ?? ''}
-                                            onChange={(e) => setData('linea', e.target.value)} required/>
+                                            onChange={(e) => setData('linea', e.target.value)} placeholder='Ingrese la linea'/>
                                     </div>
                                 </div>
                                 <div className="div-block-551">
@@ -54,13 +87,13 @@ export default function Edit(props) {
                                         <label htmlFor="name-3" className="field-label-13">Marca*:</label>
                                         <input type="text" className="campo-rutas w-input"  maxLength={256} name="name-3" 
                                             data-name="Name 3" id="name-3" defaultValue={props.vehiculo?.marca ?? ''}
-                                            onChange={(e) => setData('marca', e.target.value)} required/>
+                                            onChange={(e) => setData('marca', e.target.value)} placeholder='Ingrese la marca'/>
                                     </div>
                                     <div className="div-block-552 hidespace">
                                         <label htmlFor="name-2" className="field-label-13">Cilindraje:</label>
                                         <input type="text" className="campo-rutas w-input" maxLength={5} name="name-2" 
                                             data-name="Name 2" id="name-2" defaultValue={props.vehiculo?.detalle?.cilindraje ?? ''}
-                                            onChange={(e) => setData('cilindraje', e.target.value)} required/>
+                                            onChange={(e) => setData('cilindraje', e.target.value)} placeholder='Ingrese el cilindraje'/>
                                     </div>
                                 </div>
                                 <div className="div-block-551">
@@ -68,7 +101,7 @@ export default function Edit(props) {
                                         <label htmlFor="name-3" className="field-label-13">Modelo*:</label>
                                         <input type="text" className="campo-rutas w-input" maxLength={256} name="name-3" 
                                             data-name="Name 3" id="name-3" defaultValue={props.vehiculo?.modelo ?? ''}
-                                            onChange={(e) => setData('modelo', e.target.value)} required/>
+                                            onChange={(e) => setData('modelo', e.target.value)} placeholder='Ingrese el modelo'/>
                                     </div>
                                     <div className="div-block-552 hidespace">
                                         <label htmlFor="name-2" className="field-label-13 hide">Ejemplo Campo:</label>
@@ -95,8 +128,8 @@ export default function Edit(props) {
                                         <label htmlFor="name-2" className="field-label-13 labelsize">Descripción:</label>
                                         <input  type="text" className="campo-rutas hide w-input" maxLength={256}  name="name-2"
                                             data-name="Name 2" id="name-2"/>
-                                        <textarea maxLength={5000} id="field-2" name="field-2" data-name="Field 2"
-                                            className="text-area campo-rutas w-input" defaultValue={props.vehiculo?.detalle?.descripcion ?? ''} onChange={(e) => setData('descripcion', e.target.value)} required/>
+                                        <textarea maxLength={5000} id="field-2" name="field-2" data-name="Field 2" placeholder='Ingrese la descripción'
+                                            className="text-area campo-rutas w-input" defaultValue={props.vehiculo?.detalle?.descripcion ?? ''} onChange={(e) => setData('descripcion', e.target.value)}/>
                                     </div>
                                 </div>
                             </div>
@@ -117,7 +150,7 @@ export default function Edit(props) {
                                         </label>
                                         <input type="text" className="campo-rutas w-input" maxLength={256} name="name-2"
                                             data-name="Name 2" id="name-2" defaultValue={props.vehiculo?.detalle?.soat ?? ''}
-                                            onChange={(e) => setData('soat', e.target.value)}/>
+                                            onChange={(e) => setData('soat', e.target.value)} placeholder='Ingrese el soat'/>
                                     </div>
                                 </div>
                                 <div className="div-block-551">
@@ -139,7 +172,7 @@ export default function Edit(props) {
                                         <label htmlFor="name-5" className="field-label-13">Tecno-mecánica:</label>
                                         <input type="text" className="campo-rutas w-input" maxLength={256} name="name-3"
                                             data-name="Name 3"  id="name-3" defaultValue={props.vehiculo?.detalle?.tecno_mecanica ?? ''}
-                                            onChange={(e) => setData('tecno_mecanica', e.target.value)}/>
+                                            onChange={(e) => setData('tecno_mecanica', e.target.value)} placeholder='Ingrese la tecno mecanica'/>
                                     </div>
                                     <div className="div-block-552 hidespace">
                                         <label htmlFor="name-5" className="field-label-13 hide">Ejemplo Campo:</label>
@@ -154,8 +187,8 @@ export default function Edit(props) {
                                     <div className="div-block-552">
                                         <label htmlFor="name-5" className="field-label-13">Conductor Asignado:</label>
                                         <select name="field" data-name="Field" className="select-field-2 c-p-p w-select"
-                                            onChange={(e) => setData('cod_usuario', e.target.value)} required>
-                                            <option value="">Seleccione la ruta</option>
+                                            onChange={(e) => setData('cod_usuario', e.target.value)}>
+                                            <option value="">Seleccione el conductor</option>
                                             { props.conductores.map((conductor,index) => {
                                                 return  <option value={conductor.id} selected={conductor.id == props.vehiculo?.programacion?.cod_usuario}>{conductor.name}</option>;
                                                 } )
@@ -173,8 +206,8 @@ export default function Edit(props) {
                                     <div className="div-block-552">
                                         <label htmlFor="name-5" className="field-label-13">Sector Asignado:</label>
                                         <select id="selectZona" name="field" data-name="Field" className="select-field-2 c-p-p w-select selectZona"
-                                            onChange={(e) => cargarRutas(e.target.value)} required>
-                                            <option value="">Seleccione la ruta</option>
+                                            onChange={(e) => cargarRutas(e.target.value)}>
+                                            <option value="">Seleccione el sector</option>
                                             { props.zonas.map((zona,index) => {
                                                 return  <option value={zona.id} selected={zona.id == props?.cod_zona}>{zona.nombre}</option>;
                                                 } )
@@ -191,9 +224,15 @@ export default function Edit(props) {
                                 <div className="div-block-551">
                                     <div className="div-block-552">
                                         <label htmlFor="name-5" className="field-label-13">Ruta Asignada:</label>
-                                        <input type="text" className="campo-rutas w-input" maxLength={256} name="name-3" 
-                                            data-name="Name 3" id="name-3" defaultValue={props.vehiculo?.ruta ?? ''}
-                                            onChange={(e) => setData('ruta', e.target.value)}/>
+                                        <select name="field" data-name="Field" className="select-field-2 c-p-p w-select selectRuta"
+                                            onChange={(e) => setData('cod_ruta', e.target.value)} disabled={props.vehiculo?.programacion?.cod_ruta ? false : true}
+                                            data-ruta={props.vehiculo?.programacion?.cod_ruta ?? ''}>
+                                                <option value="">Seleccione la ruta</option>
+                                                { props.rutas.map((ruta,index) => {
+                                                return  <option value={ruta.id} selected={ruta.id == props?.vehiculo?.programacion?.cod_ruta}>{ruta.nombre}</option>;
+                                                } )
+                                            }
+                                        </select>
                                     </div>
                                     <div className="div-block-552 hide space">
                                         <label htmlFor="name-5" className="field-label-13 hide">Ejemplo Campo:</label>
@@ -211,9 +250,6 @@ export default function Edit(props) {
                         </form>
                         <div className="w-form-done">
                             <div>Thank you! Your submission has been received!</div>
-                        </div>
-                        <div className="w-form-fail">
-                            <div>Oops! Something went wrong while submitting the form.</div>
                         </div>
                     </div>
                 </div>

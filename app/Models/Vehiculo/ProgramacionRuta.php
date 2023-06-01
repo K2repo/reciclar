@@ -3,15 +3,11 @@
 namespace App\Models\Vehiculo;
 
 use App\Models\Ruta;
-use Illuminate\Database\Eloquent\Model;
+use App\Classes\Models\Model;
 
 class ProgramacionRuta extends Model
 {
-    const ACTIVO   = 1;
-    const INACTIVO = 0;
-
     protected $table = 'programacion_rutas';
-    public $timestamps = false;
 
     /** Campos que pueden ser usados en create/update. */
     protected $fillable = [

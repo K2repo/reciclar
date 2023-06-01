@@ -15,6 +15,9 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    const ACTIVO   = 1;
+    const INACTIVO = 0;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -22,6 +25,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'last_name',
         'tipo_documento',
         'numero_documento',
         'email',
@@ -65,5 +69,15 @@ class User extends Authenticatable
     public function esCliente()
     {
         return $this->rol()->where('cod_rol', Rol::CLIENTE);
+    }
+
+    public function ciudad()
+    {
+        return $this->belongsTo(Ciudad::class, 'cod_ciudad', 'id');
+    }
+
+    public function delete(): bool
+    {
+        return $this->update(['sw_estado' => self::INACTIVO]);
     }
 }

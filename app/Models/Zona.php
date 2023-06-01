@@ -2,15 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
+use App\Classes\Models\Model;
 class Zona extends Model
 {
-    const ACTIVO   = 1;
-    const INACTIVO = 0;
-
     protected $table = 'zonas';
-    public $timestamps = false;
 
     /** Campos que pueden ser usados en create/update. */
     protected $fillable = [
