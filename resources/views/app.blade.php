@@ -25,8 +25,18 @@
         <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
         <link href="/images/favicon.png" rel="shortcut icon" type="/image/x-icon">
         <link href="/images/webclip.png" rel="apple-touch-icon">
+        <link href="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
 
+        <style>
 
+            select[name="lista-materiales_length"] {
+            width: 135%;
+            margin-left: 2rem;
+            }
+            td, th {
+                padding: 0.5rem!important;
+            }
+        </style>
 
 
         <!-- Fonts -->

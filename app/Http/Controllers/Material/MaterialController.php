@@ -55,6 +55,7 @@ class MaterialController extends Controller
         $material->descripcion = $request->descripcion;
         $material->sw_estado = 1;
         $material->save();
+
         return redirect(route('materiales.index'));
     }
 
@@ -84,23 +85,32 @@ class MaterialController extends Controller
      * Update the specified resource in storage.
      */
     //public function update(Request $request, string $id)
-    public function update(Request $request, Material $material): RedirectResponse
+    public function update(Request $request, string $id): RedirectResponse
     {
         //
         //$this->authorize('update', $material);
 
-        /*$validated = $request->validate([
+        $validated = $request->validate([
             //'message' => 'required|string|max:255',
             'nombre' => 'required|string|max:255',
             'unidad_medida' => 'required|string|max:255',
-            'descripcion' => 'required|string|max:255',
-        ]);*/
+            'descripcion' => 'nullable|required|string|max:255',
+            'precio' => 'required',
+            'sw_estado' => 'required',
+        ]);
 
         //$material->update($request->id);
-        //$aux = Material::find($request->id);
-        dd($request);
 
+        $material = Material::find($id);
+        $material->nombre = $request->nombre;
+        $material->unidad_medida = $request->unidad_medida;
+        $material->descripcion = $request->descripcion;
+        $material->precio = $request->precio;
+        $material->sw_estado = $request->sw_estado;
+        //dd($request->all());
+        $material->save();
 
+        //dd($request->all(), $id);
 
         return redirect(route('materiales.index'));
     }
