@@ -2,7 +2,7 @@ import '/resources/css/normalize.css';
 import '/resources/css/reciclar.webflow.css';
 import '/resources/css/webflow.css';
 import '/resources/css/admin-perfil.css';
-import '/resources/css/crear-material.css';
+//import '/resources/css/crear-material.css';
 import { useForm } from '@inertiajs/react';
 import AuthenticatedLayoutK2D from '@/Layouts/AuthenticatedLayoutK2D';
 
