@@ -18,11 +18,11 @@ export default function Edit(props) {
     const { data, setData, put, processing, errors, reset } = useForm({
         id: props.material.id,
         nombre: props.material.nombre,
-        sw_estado: props.material.sw_estado,
+        estado: props.material.estado,
         unidad_medida: props.material.unidad_medida?? '',
         codigo_material: '',
         descripcion: props.material.descripcion??'',
-        precio: props.material.precio
+        precio: 0
     });
 
     const submit = (e) => {
@@ -157,14 +157,13 @@ export default function Edit(props) {
                                     maxLength={256}
                                     name="precio"
                                     data-name="precio"
-                                    onChange={(e) => setData('precio', e.target.value)}
-                                    defaultValue={props.material.precio}
+                                    defaultValue={"000000"}
                                     id="precio" /></div>
 
                                     <div className="div-block-552 hidespace"><label htmlFor="field-2" className="field-label-13">Estado:</label>
                                     <select
                                     id="field-2"
-                                    onChange={(e) => setData('sw_estado', e.target.value)}
+                                    onChange={(e) => setData('nombre', e.target.value)}
                                     name="field-2"
                                     data-name="Field 2"
                                     className="select campo-rutas w-select">

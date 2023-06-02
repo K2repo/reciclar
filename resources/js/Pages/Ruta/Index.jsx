@@ -1,12 +1,16 @@
+//import '/resources/css/normalize.css';
+//import '/resources/css/reciclar.webflow.css';
+//import '/resources/css/webflow.css';
 import '/resources/css/normalize.css';
 import '/resources/css/reciclar.webflow.css';
 import '/resources/css/webflow.css';
-
-
+import '/resources/css/admin-perfil.css';
+import '/resources/css/materiales-index.css';
 import { useForm } from '@inertiajs/react';
 import AuthenticatedLayoutK2D from '@/Layouts/AuthenticatedLayoutK2D';
 
-export default function Index({ auth }) {
+
+export default function Index(props) {
 
     const { data, setData, post, processing, errors, reset } = useForm({
         nombre: '',
@@ -25,50 +29,77 @@ export default function Index({ auth }) {
 
     return (
         <AuthenticatedLayoutK2D>
-            <div className="bg-ruta-interior sizem">
-                <h1 className="heading-47">Nuevo Material</h1>
-                <div>
-                    <div className="w-form">
-                        <form onSubmit={submit}>
-                            <div className="div-block-591"><img src="images/foto-material.png" loading="lazy" alt /></div>
-                            <div className="div-block-554">
-                                <div className="div-block-551">
-                                    <div className="div-block-552"><label htmlFor="name-4" className="field-label-13 labelsize d n-r">Nombre de Material:</label><input type="text" className="campo-rutas hide w-input" maxLength={256} name="name-4" data-name="Name 4" placeholder id="name-4" />
-                                        <div className="div-block-574"><input type="text" className="campo-rutas w-input" maxLength={256} name="name-2" data-name="Name 2" placeholder="Nombre Material*" id="name-2" /></div>
-                                    </div>
-                                    <div className="div-block-552 hidespace"><label htmlFor="field" className="field-label-13 t-s-c"><strong>Estado:</strong></label><select id="field" name="field" data-name="Field" className="select-c campo-rutas w-select">
-                                        <option value="Estado de Material*">Estado de Material*</option>
-                                    </select></div>
-                                </div>
-                                <div className="div-block-551">
-                                    <div className="div-block-552"><label htmlFor="name-3" className="field-label-13 t-s-c">Unidad de medida:</label><input type="text" className="campo-rutas w-input" maxLength={256} name="name-3" data-name="Name 3" placeholder="Unidad de medida*" id="name-3" /></div>
-                                    <div className="div-block-552 hidespace"><label htmlFor="name-2" className="field-label-13">Precio:</label><input type="text" className="campo-rutas w-input" maxLength={256} name="name-2" data-name="Name 2" placeholder="Precio*" id="name-2" /></div>
-                                </div>
-                                <div className="div-block-551">
-                                    <div className="div-block-552"><label htmlFor="name-3" className="field-label-13 t-s-c">Código de Material:</label><input type="text" className="campo-rutas w-input" maxLength={256} name="name-3" data-name="Name 3" placeholder="Codigo*" id="name-3" /></div>
-                                    <div className="div-block-552 hidespace"><label htmlFor="name-2" className="field-label-13 hide">Ejemplo Campo:</label></div>
-                                </div>
-                                <div className="div-block-551">
-                                    <div className="div-block-552"><label htmlFor="field-3" className="field-label-13 t-s-c p">Descripción:</label><textarea placeholder="Descripción de material" maxLength={5000} id="field-3" name="field" data-name className="text-a campo-rutas w-input" defaultValue={""} /></div>
-                                </div>
-                            </div>
-                            <div className="div-block-554 hide-line">
-                                <div className="div-block-577">
-                                    <button type="submit" className="btn-rutas-enviar w-inline-block">
-                                        <div className="text-block-187">Crea nuevo Material</div>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                        <div className="w-form-done">
-                            <div>Thank you! Your submission has been received!</div>
-                        </div>
-                        <div className="w-form-fail">
-                            <div>Oops! Something went wrong while submitting the form.</div>
-                        </div>
+            <div className="bg-sombra-materiales">
+                <h1 className="heading-47">Rutas</h1>
+                <div className="form-block-7 w-form">
+                    <form id="email-form" name="email-form" data-name="Email Form" method="get" className="form-8">
+                    <div className="div-block-569"><label htmlFor="Buscar-Placa" className="field-label-16">Buscar:</label><input type="text" className="campo-perfiles c-p-p w-input" maxLength={256} name="Buscar-Placa" data-name="Buscar Placa" placeholder="Buscar Placa" id="Buscar-Placa" /></div>
+                    <div className="div-block-569"><label htmlFor="field" className="field-label-16">Filtrar por:</label><select id="field" name="field" data-name="Field" className="select-field-2 c-p-p w-select">
+                        <option value="Estado">Estado</option>
+                        </select></div>
+                    <div className="div-block-571">
+                        <a href="#" className="div-block-570 w-inline-block"><img src="images/buscar.png" loading="lazy" alt /></a>
+                    </div>
+                    </form>
+                    <div className="w-form-done">
+                    <div>Thank you! Your submission has been received!</div>
+                    </div>
+                    <div className="w-form-fail">
+                    <div>Oops! Something went wrong while submitting the form.</div>
                     </div>
                 </div>
+                <div className="div-block-584">
+                    <a href={route('rutas.create')} className="btn-nueva-r w-inline-block">
+                    <div className="div-block-585"><img src="images/cruz.svg" loading="lazy" width={38} alt /></div>
+                    <div className="text-block-191">Nueva ruta</div>
+                    </a>
+                </div>
+
+
+
+                <table id='lista-materiales' className="table" style= {{ position:'relative', width:'100%', textAlign:'center', fontFamily: 'Nexa, sans-serif' }}>
+                <thead className="thead table-title ">
+                    <tr>
+                    <th className='fw-100' scope="col">Todos</th>
+                    <th className='fw-100' scope="col">Fecha</th>
+                    <th className='fw-100' scope="col">Zona</th>
+                    {/* <th className='fw-100' scope="col">Precio</th> */}
+                     <th className='fw-100' scope="col">Recolector Asignado</th>
+                    {/* <th className='fw-100' scope="col">Vigencia</th> */}
+                    <th className='fw-100' scope="col">Horario</th>
+                    <th className='fw-100' scope="col">Visita</th>
+                    </tr>
+                </thead>
+                <tbody style={{ marginTop:'2rem' }}>
+                    { props.materiales.map((material,index) => {
+                        {/* return  <tr key={material.id} data-href={route('materiales.edit', material.id)}  className = {(index===0)?'thead-reciclar-green-1 clickable-row':'clickable-row'}> */}
+                        return  <tr key={material.id} data-href={route('materiales.edit', material.id)}  className = {'clickable-row'}>
+                                    <th><input type={'checkbox'}></input></th>
+                                    {/* <td>{material.id}</td>
+                                    <td>{material.nombre}</td>
+                                    <td>{material.unidad_medida}</td>
+                                    <td>{material.descripcion}</td>
+                                    <td>{material.sw_estado === 1 ? <span className="text-success"> Activo </span> : <span className="text-danger"> Inhabilitado </span>  }</td> */}
+                                </tr>;
+                        })
+                    }
+                </tbody>
+                </table>
+
+
+                <a href="editar-rutas.html" className="w-inline-block"><img src="images/rutas.png" loading="lazy" sizes="100vw" srcSet="images/rutas-p-500.png 500w, images/rutas-p-800.png 800w, images/rutas.png 949w" alt className="imagen-rutas" /></a>
+
+
+
+
+
+
+
+
+
+
             </div>
+
         </AuthenticatedLayoutK2D>
     );
 }
