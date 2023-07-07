@@ -1,9 +1,14 @@
 export default function SideBar(props) {
     return (
         <div data-w-id="b3e5de0d-d105-a27c-6479-2c5e5a39931a" className="nav-wrap">
+
+
+
             <div className="nav">
+
+            <img src="/images/marca-hoja-side.svg" loading="lazy" alt className="" style={{ position:'absolute' ,     zIndex: -1 }} />
+
                 <div className="nav-top">
-                    <a href="#" className="logo-link w-inline-block"><img src="/images/logo-reciclar.svg" loading="lazy" width={120} alt={""} className="logo" /></a>
                     <div className="nav-menu-2">
                         <a href="perfil-administrador.html" className="nav-link-2 w-inline-block">
                             <div className="embed-icon w-embed"><svg width={16} height={20} viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -49,7 +54,7 @@ export default function SideBar(props) {
 
                     </div>
                 </div>
-                <a href="#" className="help-center w-inline-block">
+                {/* <a href="#" className="help-center w-inline-block">
                     <div className="hc-wrap"><img src="/images/img-persona.webp" loading="lazy" alt={""} className="hc-icon" />
                         <div className="hc-info">
                             <div className="hc-info_h">Jose miguel</div>
@@ -66,7 +71,7 @@ export default function SideBar(props) {
                             </clipPath>
                         </defs>
                     </svg></div>
-                </a>
+                </a> */}
             </div>
             <div className="nav-spacer" />
             <div className="nav-shadow" />

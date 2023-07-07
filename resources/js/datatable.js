@@ -2,6 +2,7 @@ import $ from "jquery";
 import 'datatables.net-dt';
 
 const defaults = {
+    //"paging": false,
     language: {
         aria: {
             sortAscending: ": activate to sort column ascending",
@@ -19,10 +20,14 @@ const defaults = {
         paginate: {
             next: 'Siguiente',
             previous: 'Atrás'
-        }
+        },
     },
+    /*lengthMenu: [
+        [1, 10, -1],
+        [1, 10, "Mostrar Todo"]
+    ],*/
     loadingMessage: "Cargando...",
-    dom: `<'row'<'col-sm-12 col-xs-12 text-right pb-2 'B>r><'row'<'col-sm-6 col-xs-12'i><'col-sm-6 col-xs-12 dataTables_pager'lp>r><'table-scrollable't><'row'<'col-md-6 col-sm-12'i><'col-md-6 col-sm-12 dataTables_pager'lp>r>`, // horizobtal scrollable datatable
+    dom: `<'row'<'col-sm-12 col-xs-12 text-right pb-2 'B>r><'row'<'col-sm-6 col-xs-12'i><'col-sm-6 col-xs-12 dataTables_pager'lp>r><'table-scrollable't>`, // horizobtal scrollable datatable
 };
 
 $.extend(true, $.fn.dataTable.defaults, defaults);

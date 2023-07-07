@@ -45,14 +45,17 @@ class MaterialController extends Controller
         //dd($request->all());
         $validated = $request->validate([
             'nombre' => 'required|string|max:255',
-            'unidad_medida' => 'required|string|max:255',
+            //'unidad_medida' => 'required|string|max:255',
             'descripcion' => 'required|string|max:255',
+            'precio' => 'required|integer',
         ]);
 
         $material = new Material;
         $material->nombre = $request->nombre;
-        $material->unidad_medida = $request->unidad_medida;
+        //$material->unidad_medida = $request->unidad_medida;
+        $material->unidad_medida = 1;
         $material->descripcion = $request->descripcion;
+        $material->precio = $request->precio;
         $material->sw_estado = 1;
         $material->save();
 

@@ -5,17 +5,19 @@
 //import './../../../css/reciclar.webflow.css';
 //import './../../../css/webflow.css';
 //import './../../../css/admin-perfil.css';
+import { useForm } from '@inertiajs/react';
+import AuthenticatedLayoutK2D from '@/Layouts/AuthenticatedLayoutK2D';
+import '/resources/css/dtablebase.css';
 import '/resources/css/normalize.css';
 import '/resources/css/reciclar.webflow.css';
 import '/resources/css/webflow.css';
 import '/resources/css/admin-perfil.css';
 import '/resources/css/materiales-index.css';
-import { useForm } from '@inertiajs/react';
-import AuthenticatedLayoutK2D from '@/Layouts/AuthenticatedLayoutK2D';
 import $ from "jquery";
 import DataTable from 'datatables.net-dt';
 
 let init = ()=>{
+
     $(".clickable-row").click(function() {
         window.location = $(this).data("href");
     });
@@ -58,9 +60,10 @@ let init = ()=>{
 
 
     $('#Buscar-Placa').keyup(function(){
-        //table.column('value').search().draw;
-        table.search(this.value).draw();
+        table.column('value').search().draw();
+        //table.search(this.value).draw();
     })
+
 }
 
 export default function Index(props) {
@@ -84,7 +87,7 @@ export default function Index(props) {
     init();
 
     return (
-        <AuthenticatedLayoutK2D>
+        <AuthenticatedLayoutK2D  user={props.auth.user}   >
 
             <div className="bg-sombra-materiales">
                 <h1 className="heading-47">Materiales</h1>
@@ -101,7 +104,7 @@ export default function Index(props) {
                                 <a href="#" className="div-block-570 w-inline-block"><img src="images/buscar.png" loading="lazy" alt={""} /></a>
                             </div>
                         </form>
-                        <div className="w-form-done" stylñ>
+                        <div className="w-form-done" >
                             <div>Thank you! Your submission has been received!</div>
                         </div>
                         <div className="w-form-fail">
@@ -120,14 +123,15 @@ export default function Index(props) {
 
                 <table id='lista-materiales' className="table" style= {{ position:'relative', width:'100%', textAlign:'center', fontFamily: 'Nexa, sans-serif' }}>
                 <thead className="thead table-title ">
-                    <tr>
+                    <tr style={{ textAlign:'center' }}>
                     <th className='fw-100' scope="col">Todos</th>
                     <th className='fw-100' scope="col">Codigo</th>
                     <th className='fw-100' scope="col">Material</th>
-                    {/* <th className='fw-100' scope="col">Precio</th> */}
-                     <th className='fw-100' scope="col">Und. Medida</th>
+                    <th className='fw-100' style={{ width:'25%' }} scope="col">Descripción</th>
+                    <th className='fw-100' scope="col">Precio</th>
+                     {/* <th className='fw-100' scope="col">Und. Medida</th> */}
                     {/* <th className='fw-100' scope="col">Vigencia</th> */}
-                    <th className='fw-100' scope="col">Descripcion</th>
+                    {/* <th className='fw-100' scope="col">Descripcion</th> */}
                     <th className='fw-100' scope="col">Estado</th>
                     </tr>
                 </thead>
@@ -137,9 +141,12 @@ export default function Index(props) {
                         return  <tr key={material.id} data-href={route('materiales.edit', material.id)}  className = {'clickable-row'}>
                                     <th><input type={'checkbox'}></input></th>
                                     <td>{material.id}</td>
-                                    <td>{material.nombre}</td>
-                                    <td>{material.unidad_medida}</td>
-                                    <td>{material.descripcion}</td>
+                                    <td>{material.nombre }</td>
+                                    <td>{material.descripcion.toUpperCase()}</td>
+                                    <td>{material.precio}</td>
+                                    {/* <td>{ material.created_at }</td> */}
+                                    {/* <td>{material.unidad_medida}</td> */}
+                                    {/* <td>{material.descripcion}</td> */}
                                     <td>{material.sw_estado === 1 ? <span className="text-success"> Activo </span> : <span className="text-danger"> Inhabilitado </span>  }</td>
                                 </tr>;
                         })

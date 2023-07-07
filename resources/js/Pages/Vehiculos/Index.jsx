@@ -31,6 +31,7 @@ export default function Index(props) {
                 }
             });
         });
+
         table.columns(4).every(function(){
             let that = this;
             $('select#BuscarEstado').on('keyup change', function(){
@@ -40,6 +41,25 @@ export default function Index(props) {
                 }
             });
         });
+
+
+
+            let that = this;
+            $('select#BuscarEstado').on('keyup change', function(){
+                //Logic
+
+
+
+                table.columns(4).every(function(){
+                });
+
+                if (that.search() !== this.value) {
+                    that.search(this.value).draw();
+                    marcarRegistroPrincipal();
+                }
+            });
+
+
     });
 
     const marcarRegistroPrincipal = () => {
@@ -53,7 +73,7 @@ export default function Index(props) {
     }
 
     return (
-        <AuthenticatedLayoutK2D>
+        <AuthenticatedLayoutK2D  user={props.auth.user}   >
             <div className="bg-sombra-perfiles">
                 <div className="text-block-169">Vehículos</div>
                 <div className="div-block-568">
@@ -122,8 +142,8 @@ export default function Index(props) {
                                                 </button>
                                             </Dropdown.Trigger>
                                             <Dropdown.Content>
-                                                <a type='button' className='block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 
-                                                        hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out' 
+                                                <a type='button' className='block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700
+                                                        hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out'
                                                         href={route('vehiculos.edit', vehiculo.id)}>Editar </a>
                                                 {vehiculo.sw_estado ? <Dropdown.Link as="button" href={route('vehiculos.destroy', vehiculo.id)} method="delete">
                                                     Eliminar

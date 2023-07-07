@@ -1,0 +1,14 @@
+@import 'https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.css';
+
+select[name="lista-materiales_length"] {
+width: 135%;
+margin-left: 2rem;
+}
+td, th {
+    padding: 0.5rem!important;
+}
+
+select[name="lista-rutas_length"] {
+    width: 135%;
+    margin-left: 2rem;
+}
