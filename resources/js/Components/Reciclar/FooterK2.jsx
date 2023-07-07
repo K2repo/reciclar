@@ -1,6 +1,7 @@
 export default function FooterK2(props) {
     return (
-        <div className="footer-k2">
+        <div className="footer-k2" style={{ background:'#32AC5E', marginTop:'7%' }}>
+        <img src="/images/Rectangle-24.png" loading="lazy" alt className="" style={{ position:'' }} />
             <div>
                 <div className="div-block-498">
                     <div className="div-block-503">

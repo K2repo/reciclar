@@ -53,21 +53,21 @@ export default function Index(props) {
                 if (this.checked == seleccionado) {
                     return;
                 }
-    
+
                 this.checked = seleccionado;
                 $(this).trigger('change');
             });
         });
-    
+
         $(document).on("change", ".checkSeleccionado", function () {
             let idRegistro = $(this).attr("data-registro");
-    
+
             if (this.checked) {
                 registrosSeleccionados.push(idRegistro);
             } else {
                 registrosSeleccionados = registrosSeleccionados.filter((registro) => registro != idRegistro);
             }
-    
+
             let cantidadChecks = $(`#tablaCliente .checkSeleccionado`).length;
             $(`#tablaCliente .checkSeleccionarTodos`).prop("checked", cantidadChecks === registrosSeleccionados.length);
         });
@@ -84,7 +84,7 @@ export default function Index(props) {
     }
 
     return (
-        <AuthenticatedLayoutK2D>
+        <AuthenticatedLayoutK2D  user={props.auth.user}   >
             <div className="bg-sombra-materiales">
             <h1 className="heading-47">Clientes</h1>
             <div className="form-block-7 w-form">
@@ -92,7 +92,7 @@ export default function Index(props) {
                     <div className="div-block-551">
                         <div className="div-block-552">
                             <label htmlFor="Buscar-Cliente" className="field-label-16">Buscar:</label>
-                            <input type="text" className="campo-perfiles c-p-p w-input" maxLength={256} name="Buscar-Cliente" 
+                            <input type="text" className="campo-perfiles c-p-p w-input" maxLength={256} name="Buscar-Cliente"
                                 data-name="Buscar Placa" placeholder="Ingrese el nombre" id="BuscarCliente"/>
                         </div>
                         <div className="div-block-552">
@@ -151,10 +151,10 @@ export default function Index(props) {
                                                     </button>
                                                 </Dropdown.Trigger>
                                                 <Dropdown.Content>
-                                                    <a type='button' className='block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 
-                                                        hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out' 
+                                                    <a type='button' className='block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700
+                                                        hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out'
                                                         href={route('clientes.edit',  cliente.id)}>Editar</a>
-                                                    {cliente.sw_estado ? 
+                                                    {cliente.sw_estado ?
                                                     <Dropdown.Link as="button" href={route('clientes.destroy', cliente.id)} method="delete">
                                                         Eliminar
                                                     </Dropdown.Link> : ''}

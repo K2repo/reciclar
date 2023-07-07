@@ -113,11 +113,11 @@ class VehiculoController extends Controller
 
         return redirect(route('vehiculos.index'));
     }
-   
+
     public function buscarRutas(Request $request, $id)
     {
         $rutas = Ruta::select("id", "nombre as text")->where('cod_zona', $id)->get();
-        
+
         return response()->json(["rutas" => $rutas]);
     }
 }

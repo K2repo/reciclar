@@ -32,200 +32,93 @@ export default function Edit(props) {
 
 
     return (
-        <AuthenticatedLayoutK2D>
+        <AuthenticatedLayoutK2D user={props.auth.user} >
 
-
+            <div>
             <div className="bg-ruta-interior sizem">
-                <h1 className="heading-47">Materiales - Papel</h1>
+                <h1 className="heading-47">Rutas</h1>
                 <div>
-                    <div className="w-form">
-
-                        <form id="email-form" name="email-form" data-name="Email Form" method="get" onSubmit={submit}>
-
-
-                            <div className="div-block-593">
-                                <div className="div-block-594"><img src="/images/materiales.jpg" loading="lazy" sizes="(max-width: 479px) 130px, (max-width: 767px) 23vw, 130px" srcSet="/images/materiales-p-500.jpg 500w, /images/materiales.jpg 640w" className="image-124" /></div>
-                                <div className="div-block-595"><img src="/images/cambiar-imagen-material.svg" loading="lazy" /></div>
-                            </div>
-
-                            <div>
-                                <div className="div-block-551">
-                                    <div className="div-block-552"><label htmlFor="name" className="editar-m">Fecha Registro:</label>
-                                    <input
-                                    type="text"
-                                    className="campo-rutas w-input"
-                                    maxLength={256}
-                                    name="name"
-                                    data-name="Name"
-                                    defaultValue={props.material.created_at}
-                                    data-toggle="datepicker"
-                                    id="name" />
-                                    </div>
-
-                                    <div className="div-block-552 hidespace"><label htmlFor="name-3" className="field-label-13">Vigencia:</label>
-                                    <input
-                                    type="text"
-                                    className="campo-rutas w-input"
-                                    maxLength={256}
-                                    name="name-3"
-                                    data-name="Name 3"
-                                    defaultValue={"21 Febrero 2023"}
-                                    id="name-3" />
-                                    </div>
-                                </div>
-                                <div className="div-block-551">
-                                    <div className="div-block-552"><label htmlFor="name-3" className="field-label-13 editar-m">Estado:</label>
-                                    <input
-                                    type="text"
-                                    className="campo-rutas red w-input"
-                                    maxLength={256}
-                                    name="name-3"
-                                    data-name="Name 3"
-                                    defaultValue={props.material.sw_estado ? 'Activo' : 'Inhabilitado'}
-                                    id="name-3" />
-                                    </div>
-
-                                    <div className="div-block-552 hidespace"><label htmlFor="name-2" className="field-label-13 hide">Peso Recolectado:</label>
-                                    <input
-                                    type="text"
-                                    className="campo-rutas hide w-input"
-                                    maxLength={256}
-                                    name="name-2"
-                                    data-name="Name 2"
-                                    placeholder={""} id="name-2"/>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div className="div-block-592">
-                                <div className="div-block-551">
-
-                                    <div className="div-block-552"><label htmlFor="Material" className="field-label-13-copy editar-m">Nombre de Material:</label>
-                                    {/* <input
-                                    maxLength={256}
-                                    name="id"
-                                    data-name="id"
-                                    data-toggle="datepicker"
-                                    id="id"
-                                    className="campo-rutas w-input"
-                                    defaultValue={props.material.id}
-                                    onChange={(e) => setData('nombre', (e.target.value!==null?e.target.value:e.target.defaultValue) )}
-                                    style={{ display:'none' }}
-                                    /> */}
-
-                                    <input
-                                    maxLength={256}
-                                    name="nombre"
-                                    data-name="nombre"
-                                    data-toggle="datepicker"
-                                    id="nombre"
-                                    className="campo-rutas w-input"
-                                    defaultValue={props.material.nombre}
-                                    onChange={(e) => setData('nombre', e.target.value)}/>
-                                    </div>
-
-
-                                    <div className="div-block-552 hidespace"><label htmlFor="Unidad" className="field-label-13">Unidad de medida:</label>
-                                    <input
-                                    type="text"
-                                    className="campo-rutas w-input"
-                                    maxLength={256}
-                                    name="Unidad"
-                                    data-name="Unidad"
-                                    defaultValue={props.material.unidad_medida}
-                                    onChange={(e) => setData('unidad_medida', e.target.value)}
-                                    id="Unidad" />
-
-                                    <input
-                                    type="text"
-                                    className="campo-rutas hides w-input"
-                                    maxLength={256}
-                                    name="name-2"
-                                    data-name="Name 2"
-                                    defaultValue={""}
-                                    id="name-2" />
-
-                                    </div>
-
-                                </div>
-                                <div className="div-block-551">
-                                    <div className="div-block-552"><label htmlFor="precio" className="field-label-13 editar-m">Precio:</label>
-                                    <input
-                                    type="text"
-                                    className="campo-rutas w-input"
-                                    maxLength={256}
-                                    name="precio"
-                                    data-name="precio"
-                                    defaultValue={"000000"}
-                                    id="precio" /></div>
-
-                                    <div className="div-block-552 hidespace"><label htmlFor="field-2" className="field-label-13">Estado:</label>
-                                    <select
-                                    id="field-2"
-                                    onChange={(e) => setData('nombre', e.target.value)}
-                                    name="field-2"
-                                    data-name="Field 2"
-                                    className="select campo-rutas w-select">
-                                    {/* defaultValue={props.material.sw_estado ? 'Activo' : 'Inhabilitado'} */}
-                                        <option selected={props.material.sw_estado === 1 ? true : false} value="1"> Activo </option>
-                                        <option selected={props.material.sw_estado === 0 ? true : false} value="0"> Inhabilitado </option>
-                                    </select>
-                                    </div>
-
-                                </div>
-                                <div className="div-block-551">
-                                    <div className="div-block-552"><label htmlFor="name-3" className="field-label-13 editar-m">Código de Material:</label>
-                                    <input
-                                    type="text"
-                                    className="campo-rutas w-input"
-                                    maxLength={256}
-                                    name="name-3"
-                                    data-name="Name 3"
-                                    defaultValue={props.material.id}
-                                    id="name-3" /></div>
-                                    <div className="div-block-552 hidespace"><label htmlFor="name-4" className="field-label-13 hide">Ejemplo Campo:</label></div>
-                                </div>
-                                <div className="div-block-551">
-                                    <div className="div-block-552"><label htmlFor="field-3" className="field-label-13 editar-m cambiar-s">Descripción:</label>
-                                    <textarea
-                                    defaultValue={props.material.descripcion}
-                                    onChange={(e) => setData('descripcion', e.target.value)}
-                                    maxLength={5000}
-                                    id="field-3"
-                                    name="field-3"
-                                    data-name="Field 3"
-                                    className="e campo-rutas w-input"/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="div-block-554 hide-line">
-                                <div className="div-block-577">
-                                    <button type="submit" className="btn-rutas-enviar w-inline-block">
-                                        <div className="text-block-187">Actualizar Material</div>
-                                    </button>
-                                </div>
-                            </div>
-
-
-
-                        </form>
-
-                        <div className="w-form-done">
-                            <div>Thank you! Your submission has been received!</div>
+                <div className="w-form">
+                    <form id="email-form" name="email-form" data-name="Email Form" method="get">
+                    <div>
+                        <div className="div-block-551">
+                        <div className="div-block-552"><label htmlFor="name" className="field-label-13">Fecha:</label><input type="text" className="campo-rutas w-input" maxLength={256} name="name" data-name="Name" placeholder data-toggle="datepicker" id="name" required /></div>
+                        <div className="div-block-552 hidespace"><label htmlFor="name-2" className="field-label-13">Zona:</label><input type="text" className="campo-rutas w-input" maxLength={256} name="name-2" data-name="Name 2" placeholder id="name-2" required /></div>
                         </div>
-
-                        <div className="w-form-fail" style={ Object.entries(props.errors).length === 0 ? {display:'none'} : {display:'block'}}>
-                            <div>Oops! Something went wrong while submitting the form.</div>
-                            { Object.entries(props.errors).map(element=><li> {element[0] + ': ' + element[1]}.</li>) }
-                                    {/* <div>Oops! Something went wrong while submitting the form.</div> */}
+                        <div className="div-block-551">
+                        <div className="div-block-552"><label htmlFor="name-3" className="field-label-13">Placa de Vehículo Asignado:</label><input type="text" className="campo-rutas w-input" maxLength={256} name="name-3" data-name="Name 3" placeholder id="name-3" required /></div>
+                        <div className="div-block-552 hidespace"><label htmlFor="name-2" className="field-label-13">Recolector Asignado:</label><input type="text" className="campo-rutas w-input" maxLength={256} name="name-2" data-name="Name 2" placeholder id="name-2" required /></div>
                         </div>
-
+                        <div className="div-block-551">
+                        <div className="div-block-552"><label htmlFor="name-3" className="field-label-13">Ruta Asignada:</label><input type="text" className="campo-rutas w-input" maxLength={256} name="name-3" data-name="Name 3" placeholder id="name-3" required /></div>
+                        <div className="div-block-552 hidespace"><label htmlFor="name-2" className="field-label-13">Recolector Asignado:</label><input type="text" className="campo-rutas w-input" maxLength={256} name="name-2" data-name="Name 2" placeholder id="name-2" required /></div>
+                        </div>
+                        <div className="div-block-551">
+                        <div className="div-block-552"><label htmlFor="name-3" className="field-label-13">Estado Visita:</label><input type="text" className="campo-rutas w-input" maxLength={256} name="name-3" data-name="Name 3" placeholder id="name-3" required /></div>
+                        <div className="div-block-552 hidespace"><label htmlFor="name-2" className="field-label-13">Recolector Asignado:</label><input type="text" className="campo-rutas w-input" maxLength={256} name="name-2" data-name="Name 2" placeholder id="name-2" required /></div>
+                        </div>
+                        <div>
+                        <div className="div-block-552 hidespace"><label htmlFor="name-2" className="field-label-13 labelsize c-t">Recolector Asignado:</label><input type="text" className="campo-rutas w-input" maxLength={256} name="name-2" data-name="Name 2" placeholder id="name-2" required /></div>
+                        </div>
+                    </div>
+                    <div className="div-block-554">
+                        <div className="div-block-551">
+                        <div className="div-block-552"><label htmlFor="name-4" className="field-label-13">Ejemplo Campo:</label><input type="text" className="campo-rutas w-input" maxLength={256} name="name-4" data-name="Name 4" placeholder id="name-4" required /></div>
+                        <div className="div-block-552 hidespace"><label htmlFor="name-2" className="field-label-13"><strong>Ejemplo Campo:</strong></label><input type="text" className="campo-rutas w-input" maxLength={256} name="name-2" data-name="Name 2" placeholder id="name-2" required /></div>
+                        </div>
+                        <div className="div-block-551">
+                        <div className="div-block-552"><label htmlFor="name-3" className="field-label-13">Ejemplo Campo:</label><input type="text" className="campo-rutas w-input" maxLength={256} name="name-3" data-name="Name 3" placeholder id="name-3" required /></div>
+                        <div className="div-block-552 hidespace"><label htmlFor="name-2" className="field-label-13">Ejemplo Campo:</label><input type="text" className="campo-rutas w-input" maxLength={256} name="name-2" data-name="Name 2" placeholder id="name-2" required /></div>
+                        </div>
+                    </div>
+                    </form>
+                    <div className="w-form-done">
+                    <div>Thank you! Your submission has been received!</div>
+                    </div>
+                    <div className="w-form-fail">
+                    <div>Oops! Something went wrong while submitting the form.</div>
                     </div>
                 </div>
+                </div>
             </div>
-
+            <div className="space-ruta bg-ruta-interior">
+                <div className="div-block-555">
+                <h1 className="heading-47">Programación de Rutas</h1>
+                <div className="div-block-557">
+                    <div className="btn-ruta-i space"><img src="images/cruz.svg" loading="lazy" alt className="image-113" />
+                    <div className="div-block-556">
+                        <div className="text-block-172">Exportar Reporte</div>
+                    </div>
+                    </div>
+                    <div className="btn-ruta-i"><img src="images/cruz.svg" loading="lazy" alt className="image-113" />
+                    <div>
+                        <div className="text-block-172">Nueva Ruta</div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div>
+                <div className="w-form">
+                    <form id="email-form-2" name="email-form-2" data-name="Email Form 2" method="get" className="form-7">
+                    <div className="div-block-558"><label htmlFor="Buscar-Zona" className="field-label-14">Buscar:</label><input type="text" className="text-field-4 campo-rutas w-input" maxLength={256} name="Buscar-Zona" data-name="Buscar Zona" placeholder="Buscar Zona" id="Buscar-Zona" required /></div>
+                    <div className="div-block-558"><label htmlFor="field" className="field-label-14">Filtrar por:</label><select id="field" name="field" data-name="Field" required className="campo-rutas w-select">
+                        <option value="Filtro">Filtro</option>
+                        </select></div>
+                    </form>
+                    <div className="w-form-done">
+                    <div>Thank you! Your submission has been received!</div>
+                    </div>
+                    <div className="w-form-fail">
+                    <div>Oops! Something went wrong while submitting the form.</div>
+                    </div>
+                </div>
+                <div className="div-block-559">
+                    <div id="w-node-_7729d95b-f78b-9fd6-763d-a44e7448afa1-73bcb1c1" className="div-block-560"><img src="images/table.png" loading="lazy" sizes="(max-width: 479px) 87vw, (max-width: 767px) 98vw, (max-width: 991px) 89vw, (max-width: 1279px) 37vw, (max-width: 1439px) 38vw, (max-width: 1919px) 41vw, 45vw" srcSet="images/table-p-500.png 500w, images/table.png 539w" alt className="image-117" /></div>
+                    <div id="w-node-_68d574fb-2927-12fc-c545-1388670e2602-73bcb1c1" className="bg-mapa"><img src="images/mapa.png" loading="lazy" alt /></div>
+                </div>
+                </div>
+            </div>
+            </div>
 
 
         </AuthenticatedLayoutK2D>

@@ -13,7 +13,9 @@ import '/resources/css/material-create.css';
 import { useForm } from '@inertiajs/react';
 import AuthenticatedLayoutK2D from '@/Layouts/AuthenticatedLayoutK2D';
 
-export default function Create({ auth }) {
+export default function Create(props) {
+
+    console.log(props);
 
     const { data, setData, post, processing, errors, reset } = useForm({
         nombre: '',
@@ -26,12 +28,12 @@ export default function Create({ auth }) {
 
     const submit = (e) => {
         e.preventDefault();
-        post(route('materiales.store'), { onSuccess: () => reset() });
+        post(route('materiales.store'), { onSuccess: () => reset() }  );
     };
 
 
     return (
-        <AuthenticatedLayoutK2D>
+        <AuthenticatedLayoutK2D user={props.auth.user} >
             <div className="bg-ruta-interior sizem">
                 <h1 className="heading-47">Nuevo Material</h1>
                 <div>
@@ -73,7 +75,10 @@ export default function Create({ auth }) {
                                     maxLength={256}
                                     name="name-3"
                                     data-name="Name 3"
-                                    placeholder="Unidad de medida*"/>
+                                    //placeholder="Unidad de medida*"
+                                    defaultValue={'KG'}
+                                    disabled
+                                    />
                                     </div>
                                     <div className="div-block-552 hidespace"><label htmlFor="name-2" className="field-label-13">Precio:</label>
                                     <input
@@ -86,7 +91,8 @@ export default function Create({ auth }) {
                                     placeholder="Precio*"
                                     id="name-2" /></div>
                                 </div>
-                                <div className="div-block-551">
+
+                                {/* <div className="div-block-551">
                                     <div className="div-block-552"><label htmlFor="name-3" className="field-label-13 t-s-c">Código de Material:</label>
                                     <input
                                     id="name-3"
@@ -99,7 +105,8 @@ export default function Create({ auth }) {
                                     placeholder="Codigo*" />
                                     </div>
                                     <div className="div-block-552 hidespace"><label htmlFor="name-2" className="field-label-13 hide">Ejemplo Campo:</label></div>
-                                </div>
+                                </div> */}
+
                                 <div className="div-block-551">
                                     <div className="div-block-552"><label htmlFor="field-3" className="field-label-13 t-s-c p">Descripción:</label>
                                     <textarea
@@ -123,8 +130,13 @@ export default function Create({ auth }) {
                         <div className="w-form-done">
                             <div>Thank you! Your submission has been received!</div>
                         </div>
-                        <div className="w-form-fail">
+                        {/* <div className="w-form-fail">
                             <div>Oops! Something went wrong while submitting the form.</div>
+                        </div> */}
+                        <div className="w-form-fail" style={ Object.entries(props.errors).length === 0 ? {display:'none'} : {display:'block'}}>
+                            <div>¡Ups! Algo salió mal al enviar el formulario.</div>
+                            { Object.entries(props.errors).map(element=><li> {element[0] + ': ' + element[1]}.</li>) }
+                                    {/* <div>Oops! Something went wrong while submitting the form.</div> */}
                         </div>
                     </div>
                 </div>

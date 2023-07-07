@@ -1,0 +1,67 @@
+[js-line-animation] {
+	visibility: hidden;
+}
+.w--editor [js-line-animation] {
+	visibility: visible;
+}
+[js-line-animation] .line {
+	overflow: hidden;
+}
+.h-scroll {
+height: 600vh !important;
+}
+body .transition {display: block}
+.w-editor .transition {display: none;}
+.no-scroll-transition {overflow: hidden; position: relative;}
+.glass {
+/* From https://css.glass */
+background: rgba(255, 255, 255, 0.23);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(4.4px);
+-webkit-backdrop-filter: blur(4.4px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+}
+body {
+  min-height: 0vw;
+  font-size: calc(0.45258620689655166vw + 0.6568965517241381em);
+}
+/* Max Font Size */
+@media screen and (min-width:1920px) {
+ body { font-size: 1.2000000000000002em; }
+}
+/* Min Font Size */
+@media screen and (max-width:991px) {
+ body { font-size: calc(0.20181634712411706vw + 0.75em); }
+}
+.container {
+  max-width: 100em;
+}
+.campo-perfil {
+background: #32AC5E;
+box-shadow: 0px 4px 4px #46C273, inset 0px 4px 4px rgba(57, 125, 82, 0.3);
+}
+.bg-h-p {
+background: #32AC5E;
+/* section_shadow */
+box-shadow: 0px 15px 30px rgba(5, 117, 46, 0.3);
+border-radius: 25px
+}
+.bg-progreso {
+background: #A9CF46;
+/* section_shadow */
+box-shadow: 0px 15px 30px rgba(5, 117, 46, 0.3);
+border-radius: 50px;
+}
+.bg-pa {
+background: #0170B9;
+/* section_shadow */
+box-shadow: 0px 15px 30px rgba(5, 117, 46, 0.3);
+border-radius: 50px;
+}
+.bg-call-to {
+background: #A9CF46;
+/* section_shadow */
+box-shadow: 0px 15px 30px rgba(5, 117, 46, 0.3);
+border-radius: 50px;
+}

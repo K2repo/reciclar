@@ -4,10 +4,15 @@ use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\Cliente\ClienteController;
 use App\Http\Controllers\LandingPageReciclar\LandingPageReciclarController;
 use App\Http\Controllers\Material\MaterialController;
+use App\Http\Controllers\Material\MaterialRecolectadoController;
+use App\Http\Controllers\Meritos\MeritosController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Ruta\RutaController;
 use App\Http\Controllers\Vehiculo\VehiculoController;
+use App\Models\Ruta;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -36,8 +41,40 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/perfilAdmin', function () {
-    return Inertia::render('PerfilAdmin');
+    return Inertia::render('Perfiles/PerfilAdmin');
 })->middleware(['auth', 'verified'])->name('perfilAdmin');
+
+Route::get('/PerfilUsuario', function () {
+    return Inertia::render('Perfiles/PerfilUsuario',
+    [
+        'materiales_reciclados' => DB::table('detalle_material_recolectado')
+                                        ->selectRaw("detalle_material_recolectado.cod_material, materiales.nombre, materiales.descripcion, materiales.photo, SUM(cantidad_recolectada) as cantidad_recolectada")
+                                        ->where('cod_usuario', Auth::user()->id)
+                                        ->join('materiales','detalle_material_recolectado.cod_material','=','materiales.id')
+                                        ->groupByRaw("detalle_material_recolectado.cod_material, materiales.nombre,materiales.descripcion, materiales.photo")
+                                        ->get(),
+        'meritos' => DB::table('meritos_puntos')->where('cod_usuario', Auth::user()->id)->get(),
+        'rutas_programadas' => []
+    ]);
+})->middleware(['auth', 'verified'])->name('PerfilUsuario');
+
+
+Route::get('/tenderoPuntoEco', function () {
+    return Inertia::render('Perfiles/TenderoPuntoEco',
+    [
+        'materiales' => DB::table('materiales')->get(),
+        'rutas' => Ruta::
+        selectRaw("rutas.id, rutas.nombre, fecha_programacion, zonas.nombre as zona,ciudades.nombre AS ciudad, users.name as recolector")
+        ->join('zonas', 'rutas.cod_zona','=','zonas.id')
+        ->join('ciudades', 'zonas.cod_ciudad','=','ciudades.id')
+        ->join('users', 'rutas.cod_recolector_1','=','users.id')
+        ->get()
+    ]
+);
+})->middleware(['auth', 'verified'])->name('tenderoPuntoEco');
+
+
+
 
 Route::middleware('auth')->group(function () {
     //Route::resource('perfiles', MaterialController::class);
@@ -51,6 +88,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('vehiculos', VehiculoController::class)
         ->only(['index', 'create', 'store', 'edit', 'update', 'destroy', 'buscarRutas']);
     Route::resource('materiales', MaterialController::class);
+    Route::resource('meritos', MeritosController::class);
+    Route::resource('recoleccion_materiales', MaterialRecolectadoController::class);
 });
 
 Route::resource('chirps', ChirpController::class)
